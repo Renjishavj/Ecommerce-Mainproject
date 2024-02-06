@@ -1,0 +1,157 @@
+/* Header.css*/
+
+.header {
+    background-color: black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 90px;
+  }
+  
+  .search {
+    gap: 20px;
+    display: flex;
+    background-color: white;
+    padding: 2px;
+    width: 600px;
+    border-radius: 20px;
+  }
+  
+  .search-input {
+    border: none;
+    background: transparent;
+    color: white;
+    
+  }
+  
+  .icons {
+   
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap:30px;
+  }
+  .logo{
+    margin-left: 150px;
+  }
+  .language-icon{
+    font-size: 25px;
+  }
+  .user-icon{
+    font-size: 25px;
+  }
+  .cart-icon{
+    font-size: 25px;
+  }
+  .qr-code-icon{
+    font-size: 25px;
+  }
+ .search-icon{
+    color: black;
+    font-size: 20px;
+    margin-top: 2px;
+ }
+ .icon-div{
+    display: flex;
+    gap: 10px;
+ }
+ .cart-qty{
+    color: white;
+    background-color: black;
+    border: none;
+    outline: none;
+    width: 8px;
+    margin-top: -15px;
+    
+   
+ }
+ .cart-num{
+    display: flex;
+   gap: 2px;
+ }
+  
+  @media (max-width: 1200px) {
+    .header-content {
+      gap: 50px;
+    }
+  
+    .search {
+      width: 500px;
+    }
+  
+    .logo {
+      margin-left: 100px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .header-content {
+      gap: 30px;
+    }
+  
+    .search {
+      width: 400px;
+    }
+  
+    .logo {
+      margin-left: 50px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  
+    .search {
+      width: 100%;
+    }
+  
+    .logo {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  
+    .icons {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .icon-div {
+      flex-direction: row;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .header-content {
+      gap: 10px;
+    }
+  
+    .search {
+      width: 80%;
+    }
+  
+    .logo {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  
+    .icons {
+      gap: 5px;
+    }
+  
+    .icon-div {
+      flex-direction: column;
+    }
+    .arrow-icon{
+        display: none;
+    }
+  }
