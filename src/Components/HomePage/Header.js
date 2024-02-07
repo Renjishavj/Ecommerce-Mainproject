@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 import "./Style.css";
+import flag from "../../Images/Flag_of_India.svg (1).jpg"
 import logoimg from "../../Images/picture (1).jpg";
 
 const Header = () => {
@@ -39,7 +40,7 @@ const Header = () => {
           </div>
         <div className="icon-div">
           <div>
-          <FaGlobeAmericas className="language-icon" />
+          <img src={flag} alt=""  className="language-icon"/>
           </div>
           <div>
           <FaAngleDown className="arrow-icon" />
