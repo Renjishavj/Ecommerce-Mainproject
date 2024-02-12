@@ -90,6 +90,7 @@ function Register() {
   return (
     <>
      <ToastContainer  className="taost-pos" position="top-center" />
+     
       <h2 className='reg-head'>Register</h2>
       <div className="reg-sub">
         <div className="reguser">
