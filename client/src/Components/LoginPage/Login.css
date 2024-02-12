@@ -1,0 +1,149 @@
+.userorpass {
+    background-color: rgb(111, 109, 109);
+    
+    width: 500px;
+    margin: auto;
+    padding-top: 20px;
+    border-radius: 20px;
+    padding-bottom: 60px;
+    margin-bottom: 100px;
+  }
+  .userorpass-sub{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 10px;
+    align-items: center;
+    
+  }
+  .user{
+   width: 300px;
+    border: 1px solid rgb(209, 207, 207);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-left: 10px;
+  }
+  .pass{
+    border: 1px solid rgb(209, 207, 207);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-left: 10px;
+  }
+  .inp-user{
+        border: none;
+        outline: none;
+        width: 290px;
+        padding: 2px;
+        font-size: small;
+        background-color: rgb(111, 109, 109);
+        color: white;
+       
+  }
+  .inp-pass{
+    border: none;
+    outline: none;
+    width: 290px;
+    padding: 2px;
+    font-size: small;
+    background-color: rgb(111, 109, 109);
+    color: white;
+   
+  }
+  .lab-pass{
+    font-size: small;
+    font-weight: bold;
+    color: white;
+    
+  }
+  .lab-email{
+    font-size: small;
+    font-weight: bold;
+    color: white;
+  }
+ .login-btn{
+    width: 310px;
+    padding-top:12px ;
+    padding-bottom: 12px;
+    font-size: medium;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    margin-top: 25px;
+    background-color: rgb(96, 158, 251) ;
+    color: white;
+    border:  none;
+    outline: none;
+ }
+ .login-btn:hover {
+    background-color:rgb(137, 161, 197) ;
+ }
+  .hori-login{
+    width: 120px;
+    color: black;
+   
+  }
+.login-horizontal{
+    display: flex;
+    padding-top: 15px;
+}
+.continue{
+    font-weight: bold;
+    margin-top: -5px;
+    color: white;
+}
+
+/*continue with*/
+
+
+.google-div{
+    display: flex;
+    border: 1px solid rgb(209, 207, 207);
+    width: 300px;
+    margin-left: 100px;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 20px;
+    font-weight: bold;
+    gap: 15px;
+    color: white;
+}
+.facebook-div{
+    display: flex;
+    border: 1px solid rgb(209, 207, 207);
+    width: 300px;
+    margin-left: 100px;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+}
+.twitter-div{
+    display: flex;
+    border: 1px solid rgb(209, 207, 207);
+    width: 300px;
+    margin-left: 100px;
+   justify-content: center;
+   padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 20px;
+    font-weight: bold;
+    gap: 15px;
+    color: white;
+}
+.continue-with{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.login-head{
+    text-align: center;
+   color: white;
+    
+}
