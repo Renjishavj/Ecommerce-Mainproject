@@ -6,110 +6,144 @@ import {
   FaShoppingCart,
   FaQrcode,
   FaAngleDown,
+  FaHeart
 } from "react-icons/fa";
 import "./Style.css";
 import flag from "../../Images/Flag_of_India.svg (1).jpg";
 import logoimg from "../../Images/logo.png";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
+import { useLogin } from "../../Context/LoginContext";
 
 const Header = () => {
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const [isLoginVisible, setLoginVisible] = useState(false);
-  const [isRegisterVisible, setRegisterVisible] = useState(false);
+  const {
+    isDropdownVisible,
+    isLoginVisible,
+    isRegisterVisible,
+    toggleDropdown,
+    toggleVisiblelogin,
+    toggleVisibleRegister,
+    loggedIn,
+    user,
+    setUser,
+    setLoggedIn
+  } = useLogin();
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!isDropdownVisible);
-  };
 
-  const toggleVisiblelogin = () => {
-    setLoginVisible(!isLoginVisible);
-    setRegisterVisible(false);
-  };
 
-  const toggleVisibleRegister = () => {
-    // Set isLoginVisible to false if isRegisterVisible is true
-    setLoginVisible(false);
-    setRegisterVisible(!isRegisterVisible);
-  };
+
+  const LogOut=()=>{
+    setUser(null)
+    setLoggedIn(false)
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+  }
+
+
+
 
   return (
     <div className="header">
-    <div className="header-content">
-      <div className="logo">
-        <img src={logoimg} alt="" className="img" />
-      </div>
-      <div className="search">
-        <div className="search-container">
-          <FaSearch className="search-icon" />
-          <input type="text" placeholder="Search" className="search-input" />
+      <div className="header-content">
+        <div className="logo">
+          <img src={logoimg} alt="" className="img" />
         </div>
-      </div>
-
-      <div className="icons">
-        <div className="icon-div">
-          <div>
-            <FaQrcode className="qr-code-icon" />
-          </div>
-
-          <div>
-            <FaAngleDown className="arrow-icon" />
-          </div>
-        </div>
-        <div className="icon-div">
-          <div>
-            <img src={flag} alt="" className="language-icon" />
-          </div>
-          <div>
-            <FaAngleDown className="arrow-icon" />
+        <div className="search">
+          <div className="search-container">
+            <FaSearch className="search-icon" />
+            <input type="text" placeholder="Search" className="search-input" />
           </div>
         </div>
 
-        <div className="icon-div" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-        
-          <div>
-            <FaUser className="user-icon" />
-          </div>
-          <FaAngleDown className="arrow-icon" />
+        <div className="icons">
+          <div className="icon-div">
+            <div>
+              <FaQrcode className="qr-code-icon" />
+            </div>
 
-          {isDropdownVisible && (
-            <div className="dropdown">
-              <div className="dropdown-item">
-                <button className="drop-btn-login" onClick={toggleVisiblelogin}>
-                  Login
-                </button>
+            <div>
+              <FaAngleDown className="arrow-icon" />
+            </div>
+          </div>
+          <div className="icon-div">
+            <div>
+              <img src={flag} alt="" className="language-icon" />
+            </div>
+            <div>
+              <FaAngleDown className="arrow-icon" />
+            </div>
+          </div>
+          {!loggedIn && (
+            <div
+              className="icon-div"
+              onMouseEnter={toggleDropdown}
+              onMouseLeave={toggleDropdown}
+            >
+              <div>
+                <FaUser className="user-icon" />
               </div>
-              <div className="dropdown-item">
-                <button className="drop-btn-register" onClick={toggleVisibleRegister}>
-                  Register
-                </button>
-              </div>
+
+              <FaAngleDown className="arrow-icon" />
+
+              {isDropdownVisible && (
+                <div className="dropdown">
+                  <div className="dropdown-item">
+                    <button
+                      className="drop-btn-login"
+                      onClick={toggleVisiblelogin}
+                    >
+                      Login
+                    </button>
+                  </div>
+                  <div className="dropdown-item">
+                    <button
+                      className="drop-btn-register"
+                      onClick={toggleVisibleRegister}
+                    >
+                      Register
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
+
+        {loggedIn && (
+        <div>
+          <div>{user.name}</div>
         </div>
-        {isLoginVisible && (
-          <div className="dropLogin">
-            <LoginPage />
-          </div>
         )}
 
-        {isRegisterVisible && (
-          <div className="dropRegister">
-            <RegisterPage />
+
+          {isLoginVisible && (
+            <div className="dropLogin">
+              <LoginPage />
+            </div>
+          )}
+
+          {isRegisterVisible && (
+            <div className="dropRegister">
+              <RegisterPage />
+            </div>
+          )}
+          <div className="cart-num">
+            <div>
+              <FaShoppingCart className="cart-icon" />
+            </div>
+            <div>
+              <input type="text" placeholder="8" className="cart-qty" />
+            </div>
           </div>
-        )}
-        <div className="cart-num">
-          <div>
-            <FaShoppingCart className="cart-icon" />
-          </div>
-          <div>
-            <input type="text" placeholder="8" className="cart-qty" />
-          </div>
+          {loggedIn &&
+          <div className="icon-div"><FaHeart className="wishlist-icon" /></div>
+          }
+          {loggedIn &&
+          <div className="icon-div"><button onClick={LogOut}>Log out</button></div>
+          }
         </div>
       </div>
     </div>
-  </div>
   );
-}
+};
 
 export default Header;

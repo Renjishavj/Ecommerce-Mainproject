@@ -1,68 +1,57 @@
 import React from "react";
-import banner from "../../Images/Collection.png";
-import google from "../../Images/goog.png";
-import fb from "../../Images/fb.png";
-import twitter from "../../Images/twit.png";
-import imge from "../../Images/leftbanner.jpg"
-import rightone from "../../Images/rightone.jpg"
-import righttwo from "../../Images/righttwo.jpg"
-import rightthree from "../../Images/rightthree.jpg"
-import rightfour from "../../Images/rightfour.jpg"
 import RegisterPage from "../RegisterPage";
-import { useState } from "react";
-import righthree from "../../Images/righty.png"
-import righty from "../../Images/rightyy.png"
-
+import { useLogin } from "../../Context/LoginContext";
+import women from "../../Images/woman.jpg";
+import men from "../../Images/men.png";
+import access from "../../Images/access.jpg";
+import menwomen from "../../Images/menwomen.png";
 
 function Banner() {
-  const [isShopbtnVisible, setShopbtnVisible] = useState(false);
-
-  const toggleDropdownShopbtn = () => {
-    setShopbtnVisible(!isShopbtnVisible);
-  };
+  const { isRegisterVisible, toggleVisibleRegister } = useLogin();
 
   return (
     <div className="Banner">
       <div className="banner-sub">
-          <div><img src={imge} alt="" className="left-banner-img"/></div>
-          <h1 className="banner-description">Chic fashion </h1>
-          <h3 className="banner-sub-description">trends meet convenience!</h3>
+        <div>
+          <img src={menwomen} alt="" className="left-banner-img" />
+        </div>
+        <h1 className="banner-description">Chic fashion </h1>
+        <h3 className="banner-sub-description">trends meet convenience!</h3>
 
-          <button className="shopnow-home" onClick={toggleDropdownShopbtn}>Shop Now</button>
-          {isShopbtnVisible && (
-              <div className="dropShowbtn">
-                <RegisterPage/>
-              </div>
-            )}
-        
-          <div  className="banner-secondsub">
-              <div className="banner-sub-section">
-                <div>
-                <img src={rightone} alt="" className="right-banner"/>
-                <h3 className="single-right-one">Women</h3>
-                <h4 className="single-right-desone">Best Clothes for Women</h4>
-                </div>
-                <div>
-                <img src={righttwo} alt="" className="right-banner"/>
-                <h3 className="single-right-two"> Men</h3>
-                <h4 className="single-right-destwo">Best Clothes for Men</h4>
-                </div>  
-              </div>
-              <div className="banner-sub-section">
-              <div>
-                <img src={righty} alt="" className="right-banner-three"/>
-                <h3 className="single-right-three">Accessories</h3>
-                <h4 className="single-right-desthree">Best trend Accessories</h4>
-                </div>
-                <div>
-                <img src={rightfour} alt="" className="right-banner"/>
-                <h3 className="single-right-four">Accessories</h3>
-                <h4 className="single-right-desfour">Best trend Accessories</h4>
-                </div>
-              </div>
+        <button className="shopnow-home" onClick={toggleVisibleRegister}>
+          Shop Now
+        </button>
+        {isRegisterVisible && (
+          <div className="dropRegister">
+            <RegisterPage />
           </div>
-      </div>
+        )}
 
+        <div className="banner-secondsub">
+          <div className="banner-sub-section">
+            <div className="img-one">
+              <img src={women} alt="" className="right-banner-one" />
+              <h2 className="single-right-one">Women</h2>
+              <h4 className="single-right-desone">Best Clothes for Women</h4>
+            </div>
+            <div className="img-one">
+              <img src={men} alt="" className="right-banner-two" />
+              <h2 className="single-right-two"> Men</h2>
+              <h4 className="single-right-destwo">Best Clothes for Men</h4>
+            </div>
+          </div>
+          <div className="banner-sub-section-one">
+            <div className="img-one">
+              <img src={access} alt="" className="right-banner-three" />
+              <h2 className="single-right-three">Accessories</h2>
+              <h4 className="single-right-desthree">Best trend Accessories</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*<div className="bg-banner">
+        <img src={collection} alt="" className="bann-img" />
+          </div>*/}
     </div>
   );
 }

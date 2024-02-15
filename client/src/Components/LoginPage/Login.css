@@ -1,12 +1,12 @@
 .userorpass {
-    background-color: rgb(111, 109, 109);
-    
+    background-color: rgb(131, 130, 130);
+
     width: 500px;
     margin: auto;
     padding-top: 20px;
-    border-radius: 20px;
-    padding-bottom: 60px;
-    margin-bottom: 100px;
+   
+    padding-bottom: 80px;
+    margin-bottom: 80px;
   }
   .userorpass-sub{
     display: flex;
@@ -38,7 +38,7 @@
         width: 290px;
         padding: 2px;
         font-size: small;
-        background-color: rgb(111, 109, 109);
+        background-color: rgb(131, 130, 130);
         color: white;
        
   }
@@ -48,7 +48,7 @@
     width: 290px;
     padding: 2px;
     font-size: small;
-    background-color: rgb(111, 109, 109);
+    background-color: rgb(131, 130, 130);
     color: white;
    
   }
@@ -71,14 +71,14 @@
     font-weight: bold;
     letter-spacing: 1px;
     border-radius: 20px;
-    margin-top: 25px;
-    background-color: rgb(96, 158, 251) ;
+    margin-top: 5px;
+    background-color:rgb(104, 102, 102); 
     color: white;
-    border:  none;
+    border: 1px solid white;
     outline: none;
  }
  .login-btn:hover {
-    background-color:rgb(137, 161, 197) ;
+    background-color:rgb(104, 103, 103) ;
  }
   .hori-login{
     width: 120px;
@@ -88,6 +88,7 @@
 .login-horizontal{
     display: flex;
     padding-top: 15px;
+    gap: 7px;
 }
 .continue{
     font-weight: bold;
@@ -145,5 +146,14 @@
 .login-head{
     text-align: center;
    color: white;
+  margin-top: 0px;
     
+}
+.close-btn{
+  margin-left: 430px;
+  font-size: 25px;
+  background-color:rgb(131, 130, 130);
+  border: none;
+  outline: none;
+  color: white;
 }

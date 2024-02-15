@@ -1,0 +1,63 @@
+.Forgot-container{
+    width: 100%;
+}
+.Forgot-Img{
+    width: 100%;
+    position:relative ;
+}
+.forgot-form{
+    position: absolute;
+    top: 230px;
+    left: 550px;
+    background-color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 350px;
+    align-items: center;
+    padding-top: 20px;
+
+}
+.inp-forgot{
+    margin-top: -50px;
+    width: 320px;
+    padding: 5px;
+    margin-left: -10px;
+   
+}
+.forgot-des{
+    font-size: small;
+    margin-top: -50px;
+    text-align: center;
+}
+.otp-btn{
+    outline: none;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.otp-btn:hover{
+    background-color: rgb(104, 103, 103);
+
+}
+.backtologin{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: rgb(104, 103, 103);
+    
+}
+.back-btn{
+    display: flex;
+    gap: 0px;
+}
+.backarrow{
+    margin-top: 5px;
+    color: rgb(104, 103, 103);
+}

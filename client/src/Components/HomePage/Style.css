@@ -1,6 +1,4 @@
-.main{
-  font-family: Roberto;
-}
+
 
 /* Header.css*/
 
@@ -11,7 +9,8 @@
  
 }
 .img{
-  width: 130px;
+  width: 100px;
+  margin-top: 5px;
 }
 .header-content {
   display: flex;
@@ -42,7 +41,7 @@
  color: rgb(42, 41, 41);
   display: flex;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 5px;
   gap:30px;
 }
 .logo{
@@ -443,6 +442,10 @@ text-align: center;
 padding: 5px;
 border-radius: 5px;
 }
+.shopnow-home:hover{
+  background-color: gray;
+  
+}
 
 
 @media (max-width: 1200px) {
@@ -667,9 +670,9 @@ background-size: cover;}
 /*banner*/
 .banner-sub{
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin-top: 20px;
-
+margin-left: 0px;
   
 }
 .banner-sub-section{
@@ -681,21 +684,39 @@ background-size: cover;}
  width: 735px;
  position: relative;
 }
-.right-banner{
+.right-banner-one{
   width: 360px;
   position: relative;
+}
+.right-banner-two{
+  width: 360px;
+  height: 375px;
+  position: relative;
+}
+.right-banner-three{
+  width: 730px;
+  height: 280px;
+}
+.img-one .right-banner-one:hover,.right-banner-three:hover,.right-banner-two:hover{
+  filter: brightness(35%);
+    transition: .2s;
+
+}
+.left-banner-img{
+  filter: brightness(95%);
+    transition: .2s;
 }
 .banner-secondsub{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 .banner-description{
   position: absolute;
   top: 250px;
   font-size: 60px;
   left: 230px;
-  color: white;
+  color: rgb(246, 243, 243);
   word-spacing: 2px;
   letter-spacing: 2px;
   
@@ -705,7 +726,7 @@ background-size: cover;}
   top: 340px;
   font-size: 20px;
   left: 230px;
-  color: white;
+  color: rgb(246, 243, 243);
   word-spacing: 2px;
   letter-spacing: 2px;
 
@@ -714,83 +735,113 @@ background-size: cover;}
   position: absolute;
   top: 410px;
   font-size: 20px;
-  left: 230px;
+  left: 350px;
   background-color: transparent;
   outline: none;
   border: 1px solid white;
   color: white;
   padding: 5px;
 }
+
 .single-right-one{
   position: absolute;
-  top: 200px;
-  left: 900px;
+  top: 220px;
+ right: 468px;
   color: white;
-  word-spacing: 2px;
-  letter-spacing: 2px;
+ 
+  transition: .5s ease;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }
+.img-one:hover .single-right-one 
+{opacity: 1;}
+
+
 .single-right-two{
   position: absolute;
-  top: 200px;
-  right: 180px;
+  top: 220px;
+  right: 130px;
   color: white;
   word-spacing: 2px;
   letter-spacing: 2px;
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
+.img-one:hover .single-right-two 
+{opacity: 1;}
+
 .single-right-three{
   position: absolute;
-  top: 500px;
-  left: 920px;
+  top: 550px;
+  right: 230px;
   color: white;
   word-spacing: 2px;
   letter-spacing: 2px;
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
-.single-right-four{
-  position: absolute;
-  top: 500px;
-  right: 150px;
-  color: white;
-  word-spacing: 2px;
-  letter-spacing: 2px;
-}
+.img-one:hover .single-right-three 
+{opacity: 1;}
+
 .single-right-desone{
   position: absolute;
-  top: 230px;
-  left: 850px;
+  top: 250px;
+  right: 320px;
   color: white;
   word-spacing: 2px;
   letter-spacing: 2px;
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
+.img-one:hover .single-right-desone 
+{opacity: 1;}
 .single-right-destwo{
   position: absolute;
-  top: 230px;
-  right: 120px;
+  top: 250px;
+  right: 0px;
   color: white;
   word-spacing: 2px;
   letter-spacing: 2px;
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
+.img-one:hover .single-right-destwo
+{opacity: 1;}
 .single-right-desthree{
   position: absolute;
-  top: 530px;
-  left: 850px;
+  top: 580px;
+  right: 160px;
   color: white;
   word-spacing: 2px;
   letter-spacing: 2px;
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
-.single-right-desfour{
-  position: absolute;
-  top: 530px;
-  right: 110px;
-  color: white;
-  word-spacing: 2px;
-  letter-spacing: 2px;
-}
+.img-one:hover .single-right-desthree 
+{opacity: 1;}
 
 /*drop down*/
 
 .dropdown{
   position: absolute;
-  top:50px;
+  top:40px;
   right: 220px;
   z-index: 100;
   display: flex;
@@ -823,11 +874,13 @@ border: 1px solid black;
  border-right: 1px solid black ;
 }
 .drop-btn-login:hover{
-  background-color: black;
+  background-color: rgb(104, 103, 103);
   color: white;
+  border: 1px solid rgb(104, 103, 103);
 }
 .drop-btn-register:hover{
-  background-color: black;
+  background-color: rgb(104, 103, 103);
+  border: 1px solid rgb(104, 103, 103);
   color: white;
 }
 .dropLogin{
@@ -866,10 +919,10 @@ border: 1px solid black;
   border: none;
   background-color: transparent;
 }
-.right-banner-three{
-  width: 360px;
-  height: 310px;
-  position: relative;
+
+.bann-img{
+  width: 100%;
 }
+.bg-banner{
 
-
+}

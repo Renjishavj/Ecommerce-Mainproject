@@ -12,12 +12,12 @@
     
 }
 .reg-content{
-    background-color: rgb(111, 109, 109);
+    background-color: rgb(131, 130, 130);
     padding: 20px;
-    border-radius: 20px;
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-bottom: 60px;
+  
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 70px;
 }
 .reguser,.regusername{
     width: 300px;
@@ -44,7 +44,7 @@
     width: 290px;
     padding: 2px;
     font-size: small;
-    background-color: rgb(111, 109, 109);
+    background-color: rgb(131, 130, 130);
    
 }
 .reg-pass{
@@ -67,7 +67,7 @@
     width: 290px;
     padding: 2px;
     font-size: small;
-    background-color: rgb(111, 109, 109);
+    background-color: rgb(131, 130, 130);
 }
 .reg-btn{
     width: 310px;
@@ -78,10 +78,13 @@
     letter-spacing: 1px;
     border-radius: 20px;
     margin-top: 25px;
-    background-color: rgb(96, 158, 251) ;
+    background-color:rgb(74, 73, 73); 
     color: white;
-    border:  none;
+    border:  1px solid white;
     outline: none;
+}
+.reg-btn:hover{
+    background-color:rgb(104, 103, 103) ;
 }
 .reg-main{
     background-color: white;
@@ -108,3 +111,11 @@
     color: yellow;
     font-size: small;
 }
+.close-btn{
+    margin-left: 430px;
+    font-size: 25px;
+    background-color: rgb(131, 130, 130);
+    border: none;
+    outline: none;
+    color: white;
+  }

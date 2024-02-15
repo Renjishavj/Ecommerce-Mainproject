@@ -2,14 +2,16 @@ import React from "react";
 import "./Login.css";
 import axios from "axios";
 import { useState, useRef } from "react";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useLogin } from "../../Context/LoginContext";
+import { Link } from "react-router-dom";
 
 function UserorPass() {
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+  const [errors, setErrors] = useState();
+
+  const { toggleVisiblelogin, setLoggedIn, setUser, user } = useLogin();
 
   const emailRef = useRef();
   const passRef = useRef();
@@ -21,17 +23,25 @@ function UserorPass() {
     const email = emailRef.current.value;
     const password = passRef.current.value;
 
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
 
-    setErrors({
-      email: emailRegex.test(email) ? "" : "Please enter a valid email address.",
-      password: password.length >= 8 ? "" : "Password should have a minimum length of 8 characters.",
-    });
+    const errors = {
+      email: emailRegex.test(email)
+        ? ""
+        : "Please enter a valid email address.",
+      password:
+        password.length >= 8
+          ? ""
+          : "Password should have a minimum length of 8 characters.",
+    };
 
     emailError.current = errors.email;
     passwordError.current = errors.password;
 
-    return Object.values(errors).every((error) => error === "");
+    const values = Object.values(errors).every((error) => error === "");
+    console.log(values);
+    setErrors({ ...values });
+    return values;
   };
 
   const loginUser = async () => {
@@ -47,7 +57,12 @@ function UserorPass() {
 
         if (response.status === 200 || response.status === 201) {
           console.log("Login successful!");
-         toast.success("Login Successfull")
+          toast.success("Login Successfull");
+          setLoggedIn(true);
+          localStorage.setItem('token', response.data.token);
+          setUser(response.data.user);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          toggleVisiblelogin();
         } else {
           const errorData = response.data;
 
@@ -55,14 +70,17 @@ function UserorPass() {
         }
       } catch (error) {
         console.error("Error during login:", error);
-        toast.warning("Can't login" )
+        toast.warning("Can't login");
       }
     }
   };
 
   return (
     <>
-    <ToastContainer  className="taost -pos" position="top-center"/>
+      <ToastContainer className="taost -pos" position="top-center" />
+      <button className="close-btn" onClick={toggleVisiblelogin}>
+        <IoIosCloseCircleOutline />
+      </button>
       <h2 className="login-head">Login</h2>
       <div className="userorpass-sub">
         <div className="user">
@@ -71,8 +89,10 @@ function UserorPass() {
           </div>
           <div>
             <input type="text" className="inp-user" ref={emailRef} />
+            {emailError.current && (
+              <div className="error-email">{emailError.current}</div>
+            )}
           </div>
-
         </div>
         <div className="pass">
           <div>
@@ -80,15 +100,30 @@ function UserorPass() {
           </div>
           <div>
             <input type="password" className="inp-pass" ref={passRef} />
+            {passwordError.current && (
+              <div className="error-pass">{passwordError.current}</div>
+            )}
           </div>
         </div>
+
         <div>
-          <button className="login-btn" onClick={loginUser}>Login</button>
+          <button className="login-btn" onClick={loginUser} type="submit">
+            Login
+          </button>
         </div>
+        <Link to="/forgotpassword">
+          <button className="forgot-password-btn">Forgot Password</button>
+        </Link>
         <div className="login-horizontal">
-          <div> <hr className="hori-login"/></div>
+          <div>
+            {" "}
+            <hr className="hori-login" />
+          </div>
           <div className="continue">Or Continue With</div>
-          <div> <hr className="hori-login"/></div>
+          <div>
+            {" "}
+            <hr className="hori-login" />
+          </div>
         </div>
       </div>
     </>

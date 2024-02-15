@@ -1,15 +1,21 @@
-import HomePage from "./Components/HomePage";
-import LoginPage from "./Components/LoginPage";
-import RegisterPage from "./Components/RegisterPage";
-
+import AfterHeader from "./Components/AfterLogin/AfterHeader";
+import Routers from "./Components/Routes/Routers";
+import { LoginContextProvider } from "./Context/LoginContext";
+import React from "react";
 
 
 function App() {
   return (
-    <>
-     <HomePage/> 
-    </>
+   
+   <LoginContextProvider>
+    <Routers/>
+    </LoginContextProvider>
+   
+   
   );
 }
 
 export default App;
+
+
+

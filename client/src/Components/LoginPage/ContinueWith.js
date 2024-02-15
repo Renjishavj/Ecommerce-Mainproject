@@ -17,12 +17,12 @@ function ContinueWith() {
                 <div>Facebook</div>
             </div>
         </div>
-        <div>
+       {/* <div>
             <div className='twitter-div'>
                 <div><img src={twitter} alt="" /></div>
                 <div>Twitter</div>
             </div>
-        </div>
+        </div>*/}
     </div>
   )
 }
