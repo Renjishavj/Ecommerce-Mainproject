@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../../Images/epitome.jpg"
+import logo from "../../Images/headlogo.png";
 import { faFacebookF, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import first from "../../Images/visa.png"

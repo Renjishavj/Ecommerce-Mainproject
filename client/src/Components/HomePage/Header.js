@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import "./Style.css";
 import flag from "../../Images/Flag_of_India.svg (1).jpg";
-import logoimg from "../../Images/logo.png";
+import logoimg from "../../Images/headlogo.png";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import { useLogin } from "../../Context/LoginContext";
@@ -79,11 +79,14 @@ const Header = () => {
               onMouseEnter={toggleDropdown}
               onMouseLeave={toggleDropdown}
             >
-              <div>
-                <FaUser className="user-icon" />
+              <div className="icon-div">
+                <div><FaUser className="user-icon" /></div>
+                
+                <div><FaAngleDown className="arrow-icon" /></div>
+                
               </div>
 
-              <FaAngleDown className="arrow-icon" />
+              
 
               {isDropdownVisible && (
                 <div className="dropdown">

@@ -1,23 +1,21 @@
 import React from "react";
-import dress from "../../Images/dresss.jpg";
+import dress from "../../Images/dress.jpg";
 import denim from "../../Images/denim.jpg"
 import west from "../../Images/west.jpg"
 import top from "../../Images/Tops.jpg"
 import cow from "../../Images/cow.jpg"
 import boh from "../../Images/bohemian.jpg"
 import footwear from "../../Images/footwear.jpg" 
-import jwell from "../../Images/jwell.jpg"
-import bags from "../../Images/bags.jpg"
 import scarf from "../../Images/scarf.jpg"
 import shoes from "../../Images/shoes.jpg"
 import access from "../../Images/access.jpg"
-import cowboots from "../../Images/cowboots.jpg"
 import sun from "../../Images/sun.jpg"
 import man from "../../Images/man.jpg"
 import sports from "../../Images/sports.jpg"
 import watch from "../../Images/watch.jpg"
 import wall from "../../Images/wall.jpg"
 import belt from "../../Images/belt.jpg"
+import { Link } from "react-router-dom";
 
 function Categories() {
   return (
@@ -31,29 +29,22 @@ function Categories() {
                 <img src={west} alt="" className="img-dress"></img>
               </div>
               <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Title"
-                  className="title-catt"
-                  value=" Western Dresses"
-                />
+              <Link to="/guitars">
+                <button className="title-catt">Electric Guitars</button>
+                
+                </Link>
               </div>
+              
             </div>
             <div className="round-childs">
               <div>
                 <img src={denim} alt="" className="img-dress"></img>
               </div>
               <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Title"
-                  className="title-catt"
-                  value="Denim Wear"
-                />
+              <Link to="/keyboards">
+                <button className="title-catt">KeyBoards</button>
+                
+                </Link>
               </div>
             </div>
             <div className="round-childs">
@@ -67,7 +58,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Tops and Blouses"
+                  value="Basses"
                 />
               </div>
             </div>
@@ -84,7 +75,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Cowgirl Chic"
+                  value="Micro Phones"
                 />
               </div>
             </div>
@@ -99,7 +90,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Bohemian Style"
+                  value="Drums and percussions"
                 />
               </div>
             </div>
@@ -114,41 +105,13 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Footwear"
-                />
-              </div>
-            </div>
-            <div className="round-childs">
-              <div>
-                <img src={jwell} alt="" className="img-dress"></img>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Title"
-                  className="title-catt"
-                  value="Jwellery"
+                  value="Violin"
                 />
               </div>
             </div>
             
-            <div className="round-childs">
-              <div>
-                <img src={bags} alt="" className="img-dress"></img>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Title"
-                  className="title-catt"
-                  value="Bags"
-                />
-              </div>
-            </div>
+            
+           
             <div className="round-childs">
               <div>
                 <img src={scarf} alt="" className="img-dress"></img>
@@ -160,7 +123,22 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Scarves and Wraps"
+                  value="Piano"
+                />
+              </div>
+            </div>
+            <div className="round-childs">
+              <div>
+                <img src={dress} alt="" className="img-dress"></img>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Title"
+                  className="title-catt"
+                  value="Electric Keyboard"
                 />
               </div>
             </div>
@@ -177,7 +155,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Western Shirts"
+                  value="Flute"
                 />
               </div>
             </div>
@@ -192,25 +170,11 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Hair Accessories"
+                  value="Timpani"
                 />
               </div>
             </div>
-            <div className="round-childs-btm">
-              <div>
-                <img src={cowboots} alt="" className="img-dress"></img>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Title"
-                  className="title-catt"
-                  value="Cowbot Boots"
-                />
-              </div>
-            </div>
+            
             <div className="round-childs-btm">
               <div>
                 <img src={shoes} alt="" className="img-dress"></img>
@@ -222,7 +186,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Shoe"
+                  value="Synthesizer"
                 />
               </div>
             </div>
@@ -237,7 +201,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Sports wear"
+                  value="Digital Piano"
                 />
               </div>
             </div>
@@ -253,7 +217,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Watches"
+                  value="Sitar"
                 />
               </div>
             </div>
@@ -268,7 +232,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Wallets"
+                  value="Banjo"
                 />
               </div>
             </div>
@@ -284,7 +248,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Belts"
+                  value="Accordion"
                 />
               </div>
             </div>
@@ -299,7 +263,7 @@ function Categories() {
                   id=""
                   placeholder="Title"
                   className="title-catt"
-                  value="Sunglasses"
+                  value="MIDI Controllers"
                 />
               </div>
             </div>

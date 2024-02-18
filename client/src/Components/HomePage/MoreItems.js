@@ -1,12 +1,14 @@
 import React from 'react'
 import "./Style.css"
 import dress from "../../Images/dresss.jpg"
+import { Link } from "react-router-dom";
 
 function MoreItems() {
   return (
     <>
     <div className='more-main'>
     <div className='more-Items'>
+        <Link to="/Singleitem">
         <div className='more-single-item-one'>
             <div className='for-img'>
                 <img src={dress} alt="" className='more-dress'/>
@@ -21,6 +23,9 @@ function MoreItems() {
                 <input type="text" placeholder='price' className='more-single-attr'/>
             </div>
         </div>
+
+        </Link>
+        <Link to="/Singleitem">
         <div className='more-single-item-two'>
             <div className='for-img'>
                 <img src={dress} alt="" className='more-dress'/>
@@ -35,6 +40,8 @@ function MoreItems() {
                 <input type="text" placeholder='price' className='more-single-attr'/>
             </div>
         </div>
+        </Link>
+        <Link to="/Singleitem">
         <div className='more-single-item-three'>
             <div className='for-img'>
                 <img src={dress} alt="" className='more-dress'/>
@@ -49,6 +56,7 @@ function MoreItems() {
                 <input type="text" placeholder='price' className='more-single-attr'/>
             </div>
         </div>
+        </Link>
         <div className='more-single-item-four'>
             <div className='for-img'>
                 <img src={dress} alt="" className='more-dress'/>

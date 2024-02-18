@@ -1,0 +1,60 @@
+.car-div{
+    
+    margin-top: 80px;
+    margin-left: 100px;
+    display: flex;
+    gap: 200px;
+}
+
+.pro-title{
+    width: 500px;
+    font-size: 40px;
+    border: none;
+    outline: none;
+}
+.pro-rating{
+    width: 100px;
+    font-size: 20px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+}
+.pro-price{
+    width: 100px;
+    margin-top: 20px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+.pro-desc{
+    width: 500px;
+    margin-top: 20px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+.price-qty{
+    width: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    
+   
+}
+.divi-cart{
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+}
+.addtocart-btn{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    outline: none;
+    border: 1px solid rgb(3, 17, 35);
+    color: white;
+    background-color: rgb(3, 17, 35);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.desc-product{
+    margin-right: 150px;
+}

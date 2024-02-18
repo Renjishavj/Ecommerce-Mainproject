@@ -30,11 +30,11 @@ function Register() {
     const name = nameRef.current.value;
     const phone = phoneRef.current.value;
     const password = passRef.current.value;
-    const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+   const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
     const errors = {
-      email: emailRegex.test(email)
+     /* email: emailRegex.test(email)
         ? null
-        : "Please enter a valid email address.",
+        : "Please enter a valid email address.",*/
       name:
         name.length >= 3 ? null : "Name must be at least 3 characters long.",
       phone:
@@ -46,7 +46,7 @@ function Register() {
           ? null
           : "Password should have a minimum length of 8 characters.",
     };
-    emailError.current = errors.email;
+   // emailError.current = errors.email;
     nameError.current = errors.name;
     phoneError.current = errors.phone;
     passwordError.current = errors.password;

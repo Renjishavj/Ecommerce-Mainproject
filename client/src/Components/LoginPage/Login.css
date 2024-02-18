@@ -1,5 +1,5 @@
 .userorpass {
-    background-color: rgb(131, 130, 130);
+    background-color: rgb(3, 17, 35);
 
     width: 500px;
     margin: auto;
@@ -18,14 +18,14 @@
   }
   .user{
    width: 300px;
-    border: 1px solid rgb(209, 207, 207);
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
     gap: 3px;
     padding-left: 10px;
   }
   .pass{
-    border: 1px solid rgb(209, 207, 207);
+    border: 1px solid white;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
         width: 290px;
         padding: 2px;
         font-size: small;
-        background-color: rgb(131, 130, 130);
+        background-color: rgb(3, 17, 35);
         color: white;
        
   }
@@ -48,7 +48,7 @@
     width: 290px;
     padding: 2px;
     font-size: small;
-    background-color: rgb(131, 130, 130);
+    background-color: rgb(3, 17, 35);
     color: white;
    
   }
@@ -72,13 +72,14 @@
     letter-spacing: 1px;
     border-radius: 20px;
     margin-top: 5px;
-    background-color:rgb(104, 102, 102); 
+    background-color:rgb(3, 17, 35); 
     color: white;
     border: 1px solid white;
     outline: none;
  }
  .login-btn:hover {
-    background-color:rgb(104, 103, 103) ;
+    color:rgb(3, 17, 35) ;
+    background-color:white ;
  }
   .hori-login{
     width: 120px;
@@ -152,8 +153,15 @@
 .close-btn{
   margin-left: 430px;
   font-size: 25px;
-  background-color:rgb(131, 130, 130);
+  background-color:rgb(3, 17, 35);
   border: none;
   outline: none;
   color: white;
+}
+.forgot-password-btn{
+  background-color:rgb(3, 17, 35);
+  border: none;
+  outline: none;
+  color: white;
+  text-decoration: underline;
 }

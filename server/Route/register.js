@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../Schema/userSchema");
-const router = express.Router();
+
+const nodeMailer = require("nodemailer");
 const sentMail = require("../NodeMailer/sendMail");
 const sendMail = require("../NodeMailer/sendMail");
+const router = express.Router();
 
 app.use(express.json());
 
@@ -61,21 +63,18 @@ router.post("/login", async (req, res) => {
 
 router.post("/forgotpassword", async (req, res) => {
   try {
+    const otp = Math.floor(Math.random() * 100000);
     const { email } = req.body;
-    const user = await User.findOne({ email: email });
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      { otp: otp },
+      { upsert: true }
+    );
     if (!user) {
       return res.status(401).json({ error: "user not found" });
     }
-    const otp = Math.floor(Math.random() * 100000);
-    const updateOtp = await User.findByIdAndUpdate(
-      user._id,
-      { otp: otp },
-      { new: true }
-    );
-    if (updateOtp) {
-      let info = await sendMail(user.email, otp);
-      console.log(info);
-
+    let info = await sendMail(user.email, otp);
+    if (info.accepted.length >= 1) {
       res.status(200).json({ message: "OTP sent to mail" });
     }
   } catch (error) {
@@ -83,5 +82,52 @@ router.post("/forgotpassword", async (req, res) => {
     res.status(500).json({ error: "Failed" });
   }
 });
+
+//reset
+
+router.post("/validateotp", async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+   // console.log("Password:", email);
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res.status(401).json({ error: "user not found" });
+    }
+    console.log(user.otp, otp)
+    if (parseInt(otp) === parseInt(user.otp)) {
+      return res.status(200).json({ message: "reset Verified" });
+    } else {
+      return res.status(404).json({ message: "Wrong pin" });
+    }
+  } catch (error) {}
+});
+
+//updatepassword
+
+router.post("/updatePassword", async (req, res) => {
+  console.log("running");
+  try {
+    const { email, password } = req.body;
+         console.log("Password:", password);
+         console.log("email:", email);
+          const updatepassword = await bcrypt.hash(password, 10);
+          console.log("Hashed Password:", updatepassword);
+         const user = await User.findOneAndUpdate({ email: email }, { password: updatepassword });
+         console.log(user)
+  if (user) {
+      res.status(200).json({ message: "Password updated successfully" });
+    }
+  else {
+      res.status(401).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: "Something went wrong" });
+  }
+})
+
+
+
+
 
 module.exports = router;

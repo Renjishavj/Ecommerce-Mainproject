@@ -11,8 +11,12 @@
     align-items: center;
     
 }
+.reference{
+    color: white;
+    
+}
 .reg-content{
-    background-color: rgb(131, 130, 130);
+    background-color: rgb(3, 17, 35);
     padding: 20px;
   
     padding-left: 8px;
@@ -44,7 +48,8 @@
     width: 290px;
     padding: 2px;
     font-size: small;
-    background-color: rgb(131, 130, 130);
+    color: white;
+    background-color: rgb(3, 17, 35);
    
 }
 .reg-pass{
@@ -67,8 +72,8 @@
     width: 290px;
     padding: 2px;
     font-size: small;
-    background-color: rgb(131, 130, 130);
-}
+    background-color: rgb(3, 17, 35);
+    color: white;}
 .reg-btn{
     width: 310px;
     padding-top:12px ;
@@ -78,13 +83,14 @@
     letter-spacing: 1px;
     border-radius: 20px;
     margin-top: 25px;
-    background-color:rgb(74, 73, 73); 
+    background-color:rgb(3, 17, 35); 
     color: white;
     border:  1px solid white;
     outline: none;
 }
 .reg-btn:hover{
-    background-color:rgb(104, 103, 103) ;
+    background-color:white ;
+    color: rgb(3, 17, 35);
 }
 .reg-main{
     background-color: white;
@@ -103,6 +109,7 @@
 .continue-reg{
     font-size: small;
     font-weight: 500;
+    color: white;
 }
 .error-email,
 .error-phone,
@@ -114,7 +121,7 @@
 .close-btn{
     margin-left: 430px;
     font-size: 25px;
-    background-color: rgb(131, 130, 130);
+    background-color:rgb(3, 17, 35);
     border: none;
     outline: none;
     color: white;

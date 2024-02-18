@@ -13,7 +13,7 @@ function HomePage() {
  
   return (
     <>
-    <div className='main'>
+    
     <Header/>
     
     <Banner/>
@@ -27,7 +27,7 @@ function HomePage() {
     <MoreItems/>
     <MoreItems/>
     <Footer/>
-    </div>
+    
     
     </>
    
