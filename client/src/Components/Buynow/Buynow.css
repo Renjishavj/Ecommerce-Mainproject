@@ -1,0 +1,73 @@
+.main-cart{
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-bottom: 50px;
+   
+}
+.cart{
+    display: flex;
+    gap: 80px;
+    border: 2px solid black;
+    padding: 20px;
+    
+}
+.cart-one-right{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cart-img{
+   width: 180px;
+}
+.cart-price{
+    border: 2px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+}
+.each-price{
+    display: flex;
+    gap: 40px;
+    padding-top: 20px;
+}
+.each-Discount{
+    display: flex;
+    gap: 80px;
+    padding-top: 20px;
+}
+.each-delivery{
+    display: flex;
+    gap: 23px;
+    padding-top: 20px;
+}
+.each-totalamt{
+    display: flex;
+    gap: 45px;
+    padding-top: 20px;
+}
+.each-cartbtn{
+    padding-top: 20px;
+    margin-left: 213px;
+   
+    
+}
+.cart-cartbutton{
+    padding-top: 5px;
+    padding-bottom: 5px;
+   padding-left: 10px;
+   padding-right: 10px;
+}
+.cart-section{
+    overflow-y: scroll;
+}
+.cart-section::-webkit-scrollbar {
+    display: none;
+}
+
+
+.cart-section {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}

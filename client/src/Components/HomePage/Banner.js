@@ -18,7 +18,7 @@ function Banner() {
           Elevate Your Sound with our Unmatched Collection of Musical
           Instruments!
         </h3>
-        {loggedIn && (
+        {!loggedIn && (
         <Link to="/shop">
         <button className="shopnow-home" onClick={toggleVisibleRegister}>
           Shop Now

@@ -7,9 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useLogin } from "../../Context/LoginContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function UserorPass() {
   const [errors, setErrors] = useState();
+  const navigate = useNavigate();
 
   const { toggleVisiblelogin, setLoggedIn, setUser, user } = useLogin();
 
@@ -54,6 +56,11 @@ function UserorPass() {
           email,
           password,
         });
+        if (email === "admin123@gmail.com" && password === "admin@123") {
+          // Navigate to AdminPage
+          navigate("/adminpage");
+          return;
+        }
 
         if (response.status === 200 || response.status === 201) {
           console.log("Login successful!");

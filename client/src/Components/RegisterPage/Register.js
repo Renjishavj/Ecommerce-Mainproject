@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useLogin } from "../../Context/LoginContext";
-import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
+import { useNavigate } from "react-router-dom"; 
 import LoginPage from "../LoginPage";
 
 function Register() {

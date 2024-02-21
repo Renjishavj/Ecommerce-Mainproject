@@ -3,14 +3,36 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import noimg from "../../Images/noimage.jpg";
 import "./Single.css";
+import { Link,useParams } from "react-router-dom";
+import axios from "axios"
+import { useState,useEffect } from 'react';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+
 
 function Single() {
+  let { id } = useParams();
+  const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:3300/product/104'); 
+            setProducts(response.data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []); 
   return (
     <div className="car-div">
       <div>
         <Carousel>
           <div>
-            <img src={noimg} alt=""  className="img-cara"/>
+            <img src={products.image}  className="img-cara"/>
           </div>
           <div>
             <img src={noimg} alt="" className="img-cara"/>
@@ -26,24 +48,38 @@ function Single() {
       <div className="desc-product">
         <div>
         <div>
-            <input type="text" placeholder="HandCrafted Wood Acoustic Violin" className="pro-title"/>
+        <h1  className="pro-title">{products.title}</h1>
+        </div>
+        <div className="rating-desc">
+          <div><h3 className="pro-rating">{products.rating}</h3></div>
+          <div className="star-rating">
+          <Stack spacing={1}>
+          <Rating name="half-rating-read" defaultValue={2.9} precision={4.5} readOnly />
+          </Stack>
+          </div>
+            
         </div>
         <div>
-            <input type="text" placeholder="4*" className="pro-rating" />
+        <h3 className="pro-price">{products.price}</h3>
+           
         </div>
         <div>
-            <input type="text" placeholder="4000" className="pro-price" />
-        </div>
-        <div>
-            <textarea rows={5}   placeholder="This violin is handcrafted from solid wood by an experienced violin maker. The dimensions of the violin are 4/4, with a spruce top and maple backboard & sidebard. The finish is antique varnish, giving the violin an elegant appearance. This acoustic violin comes with a bow and rosin included." className="pro-desc" />
+            <h4  className="pro-desc" placeholder="">{products.description}</h4>
         </div>
         <div className="divi-cart">
         <div>
-            <input type="number" className="price-qty" />
+            <input type="number" className="price-qty"  placeholder="0"/>
         </div>
+        <Link to="/cartpage">
         <div>
             <button className="addtocart-btn">Add to Cart</button>
         </div>
+        </Link>
+        <Link to="/buynow">
+        <div>
+            <button className="buynow-btn">Buy Now</button>
+        </div>
+        </Link>
         </div>
         
         </div>

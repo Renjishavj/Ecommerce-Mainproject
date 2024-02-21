@@ -3,12 +3,16 @@ import "./Forgot.css";
 import forgot from "../../Images/forgot.jpg";
 import { IoIosArrowBack } from "react-icons/io";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom"; 
 
 function Forgot() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState(false);
   const [otpValue, setOtpValue] = useState("");
   const [validate, setvalidate] = useState(false);
+  const navigate = useNavigate(); 
   const passwordRef = useRef();
   const confirmRef = useRef();
 
@@ -19,6 +23,7 @@ function Forgot() {
         { email }
       );
       console.log(response.data);
+      
       if (response.status === 200) {
         setOtp(true);
       }
@@ -30,7 +35,9 @@ function Forgot() {
   const ValidateOtp = async () => {
     try {
       const response = await axios.post("http://localhost:3300/route/validateotp",{ email ,otp: otpValue}
+      
       );
+      
       console.log(otpValue)
       console.log(response.data);
       if (response.status === 200) {
@@ -42,7 +49,9 @@ function Forgot() {
     }
   };
 
-  const updatePassword = async () => {
+  /*const updatePassword = async () => {
+   
+
     if (passwordRef.current.value === confirmRef.current.value) {
      const password=passwordRef.current.value
      
@@ -56,7 +65,29 @@ function Forgot() {
     } else {
       console.log("Passwords do not match.");
     }
+  };*/
+  const updatePassword = async () => {
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmRef.current.value;
+  
+    if (password.length !== 8 || confirmPassword.length !== 8) {
+      alert("Password and confirm password should be 8 characters long.");
+      return;
+    }
+  
+    if (password === confirmPassword) {
+      try {
+        const response = await axios.post("http://localhost:3300/route/updatepassword", { email, password });
+        console.log(response.data);
+        navigate('/'); 
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("Passwords do not match.");
+    }
   };
+ 
 
   return (
     <>

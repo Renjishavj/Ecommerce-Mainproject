@@ -3,7 +3,9 @@ import "./Style.css"
 import dress from "../../Images/dresss.jpg"
 import { Link } from "react-router-dom";
 
+
 function MoreItems() {
+    
   return (
     <>
     <div className='more-main'>

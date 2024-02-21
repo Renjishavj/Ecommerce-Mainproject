@@ -1,0 +1,90 @@
+.admin-header{
+    display: flex;
+   background-color:  rgb(3, 17, 35);
+    justify-content: center;
+    gap: 150px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+.admin-main{
+    display: flex;
+    padding-left: 50px;
+    gap: 100px;
+    color: white;
+}
+.search-bar{
+    display: flex;
+    border: 1px solid white;
+    margin-bottom: 20px;
+    padding-top: 0px;
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 8px;
+    padding-right: 5px;
+    margin-top: 20px;
+}
+.admin-main{
+    background-color:  rgb(3, 17, 35);
+}
+.icon-admin{
+    margin-top: 5px;
+    color: rgb(3, 17, 35);
+}
+.search-admin{
+    border: none;
+}
+.admin-admin{
+    margin-top: 13px;
+}
+.adminbtns{
+    background-color:rgb(3, 17, 35) ;
+    color:white;
+   padding-top: 3px;
+   padding-bottom: 3px;
+   padding-left: 10px;
+   padding-right: 10px;
+   margin-top: 25px;
+   font-size: medium;
+   font-weight: bold;
+   outline: none;
+   border: none;
+}
+.ind-main{
+    display: flex;
+}
+.main-sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 50px;
+   padding-right: 50px;
+    border: 1px solid rgb(3, 17, 35);
+    padding-top: 20px;
+    padding-bottom: 325px;
+    margin-top: 0px;
+}
+.dashboarsicons{
+    color:rgb(3, 17, 35) ;
+   
+}
+.side-btns{
+    color:rgb(3, 17, 35) ;
+    font-size: medium;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+.main-sidebar div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+  }
+  
+  .dashboarsicons {
+    margin-right: 15px;
+  }
+  
+  .icon-text {
+    font-size: 16px; 
+  }
+  

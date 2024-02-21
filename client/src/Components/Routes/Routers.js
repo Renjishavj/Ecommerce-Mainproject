@@ -6,6 +6,9 @@ import ShopbyPage from "../Shopby";
 import Shopkeyboard from "../ShopKeyboard";
 import SinglePage from "../SingleItem";
 import ShopPage from "../Shop";
+import CartPage from "../CartPage";
+import BuynowPage from "../Buynow";
+import AdminPage from "../Admin";
 
 
 function Routers() {
@@ -18,6 +21,9 @@ function Routers() {
       <Route path="/keyboards" element={<Shopkeyboard/>}/>
       <Route path="/singleitem" element={<SinglePage/>}/>
       <Route path="/shop" element={<ShopPage/>}/>
+      <Route path="/cartpage" element={<CartPage/>}/>
+      <Route path="/buynow" element={<BuynowPage/>}/>
+      <Route path="/adminpage" element={<AdminPage/>}/>
     </Routes>
   </BrowserRouter>
    
