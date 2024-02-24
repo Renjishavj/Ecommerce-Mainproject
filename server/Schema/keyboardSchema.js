@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const productSchema=mongoose.Schema({
+const keyboardSchema=mongoose.Schema({
     _id:{type:String,required:true,unique:true},
     title:{type:String,required:true},
     rating:{type:String,required:true},
@@ -11,6 +11,8 @@ const productSchema=mongoose.Schema({
     cartthree:{type:String},
     description:{type:String},
     count:{type:String},
+    category:{type:String}
+    
 })
 
-module.exports=mongoose.model("PRODUCT",productSchema)
+module.exports=mongoose.model("keyboards",keyboardSchema)

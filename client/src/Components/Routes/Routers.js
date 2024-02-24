@@ -9,6 +9,7 @@ import ShopPage from "../Shop";
 import CartPage from "../CartPage";
 import BuynowPage from "../Buynow";
 import AdminPage from "../Admin";
+import AddProduct from "../Admin/AddProduct";
 
 
 function Routers() {
@@ -23,7 +24,7 @@ function Routers() {
       <Route path="/shop" element={<ShopPage/>}/>
       <Route path="/cartpage" element={<CartPage/>}/>
       <Route path="/buynow" element={<BuynowPage/>}/>
-      <Route path="/adminpage" element={<AdminPage/>}/>
+      <Route path="/adminpage/*" element={<AdminPage/>}/>
     </Routes>
   </BrowserRouter>
    

@@ -14,6 +14,8 @@ app.use(express.json());
 
 router.post("/register", async (req, res) => {
   try {
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("db connected");
     //console.log(User);
     const { email, name, phone, password } = req.body;
     console.log(req.body);
@@ -34,6 +36,10 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("db connected");
+
     const { email, password } = req.body;
     let user = await User.findOne({ email: email });
 
@@ -63,6 +69,8 @@ router.post("/login", async (req, res) => {
 
 router.post("/forgotpassword", async (req, res) => {
   try {
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("db connected");
     const otp = Math.floor(Math.random() * 100000);
     const { email } = req.body;
     const user = await User.findOneAndUpdate(
@@ -87,6 +95,8 @@ router.post("/forgotpassword", async (req, res) => {
 
 router.post("/validateotp", async (req, res) => {
   try {
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("db connected");
     const { email, otp } = req.body;
    // console.log("Password:", email);
     const user = await User.findOne({ email: email });
@@ -107,9 +117,10 @@ router.post("/validateotp", async (req, res) => {
 router.post("/updatePassword", async (req, res) => {
   console.log("running");
   try {
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("db connected");
     const { email, password } = req.body;
-         console.log("Password:", password);
-         console.log("email:", email);
+        
           const updatepassword = await bcrypt.hash(password, 10);
           console.log("Hashed Password:", updatepassword);
          const user = await User.findOneAndUpdate({ email: email }, { password: updatepassword });

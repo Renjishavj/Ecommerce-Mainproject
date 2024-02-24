@@ -3,12 +3,13 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const helmet=require("helmet")
 
 app.use(cors());
-
+app.use(helmet());
 const registerRoute = require("./Route/register");
 const productRoute = require("./Route/Product");
-
+/*
 mongoose
   .connect(process.env.CONNECTION)
   .then(() => {
@@ -17,7 +18,7 @@ mongoose
   .catch((err) => {
     console.log("db not connected");
     console.log(err);
-  });
+  });*/
 
 app.use(express.json());
 app.use("/route", registerRoute);

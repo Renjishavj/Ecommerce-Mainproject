@@ -87,4 +87,17 @@
   .icon-text {
     font-size: 16px; 
   }
+
+  /*add product*/
+  .add-pro{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 450px;
+  }
+  .add-prohead{
+    padding-left: 450px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
   
