@@ -43,20 +43,24 @@ function DeleteProduct() {
         }
       };
   return (
-    <div>
-    <div>
-        <label htmlFor="title">SelectCategory</label>
-       <select value={productData.category} onChange={handleCategoryChange}>
+    <div className='admin-delte'>
+    <div >
+      <h1 className='dlte-head'>DELETE PRODUCT</h1>
+      <div className='delete-inpt'>
+      <label htmlFor="title">SelectCategory</label>
+       <select value={productData.category} onChange={handleCategoryChange} className='inpvaluescat'>
         <option value={0}>Guitar</option>
         <option value={1}>Keyboard</option>
        </select>
+      </div>
+        
         </div>
 
-        <div><label htmlFor="id">ID:</label>
-        <input type="text" id="id" name="id" value={productData.id} onChange={handleChange} required />
+        <div className='delete-inp'><label htmlFor="id">ID:</label>
+        <input type="text" id="id"  className='inpvalues' name="id" value={productData.id} onChange={handleChange} required />
         </div>
         <div>
-          <button  onClick={handleDeleteProduct}>Delete</button>
+          <button  onClick={handleDeleteProduct} className='dltebtn'>Delete</button>
         </div>
 
     </div>

@@ -3,6 +3,7 @@ import RegisterPage from "../RegisterPage";
 import { useLogin } from "../../Context/LoginContext";
 import musicbanner from "../../Images/Hero-Image.png"
 import {Link} from "react-router-dom"
+import guitar from "../../Images/guitarr.jpg"
 
 function Banner() {
   const { isRegisterVisible, toggleVisibleRegister , loggedIn} = useLogin();
@@ -10,7 +11,7 @@ function Banner() {
   return (
     <div className="bg-banner">
       <div>
-        <img src={musicbanner} alt="" className="bann-img" />
+        <img src={guitar} alt="" className="bann-img" />
       </div>
       <div>
         <h1 className="head-bann">Rhythmic Resonance</h1>

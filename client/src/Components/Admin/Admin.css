@@ -93,11 +93,106 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left: 450px;
+    padding-left: 400px;
   }
   .add-prohead{
-    padding-left: 450px;
+    padding-left: 480px;
     padding-bottom: 20px;
     padding-top: 20px;
   }
+ .add-prohead{
+    color: rgb(3, 17, 35);
+ }
+ .addProduct{
+   
+    padding-right: 400px;
+ }
+ .inputscarts{
+    display: flex;
+    gap: 30px;
+    border:  1px solid rgb(3, 17, 35);
+ }
+ .inputscartscategory{
+    display: flex;
+    gap: 30px;
+   
+ }
+ .input-form{
+    border: none;
+    padding: 10px;
+    outline: none;
+ }
+ .inputscartsrate{
+    display: flex;
+    gap: 30px;
+    border:  1px solid rgb(3, 17, 35);
+   
+ }
+ .ratescale{
+   width: 250px;
+ }
   
+ textarea{
+    border: none;
+    outline: none;
+    width: 270px;
+ }
+ select{
+    width: 100px;
+   padding-left: 5px;
+   padding-right: 5px;
+ }
+ .addprod{
+    background-color: rgb(3, 17, 35);
+    color: white;
+    padding: 5px;
+    border: none;
+    outline: none;
+    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+
+ /*delete*/
+ .admin-delte{
+    padding-left: 400px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+ }
+ .delete-inp{
+    border: 1px solid rgb(3, 17, 35);
+ }
+ .inpvalues{
+    border: none;
+ }
+ .inpvaluescat{
+    padding-left: 10px;
+    margin-left: 20px;
+    
+ }
+ .dltebtn{
+    background-color: rgb(3, 17, 35);
+    color: white;
+    padding: 5px;
+    border: none;
+    outline: none;
+    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+ .dlte-head{
+    margin-left: 50px;
+    padding-bottom: 20px;
+ }
+ .update-btn{
+    background-color: rgb(3, 17, 35);
+    color: white;
+    padding: 5px;
+    border: none;
+    outline: none;
+    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }

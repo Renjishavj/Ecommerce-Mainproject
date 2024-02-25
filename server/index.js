@@ -9,6 +9,7 @@ app.use(cors());
 app.use(helmet());
 const registerRoute = require("./Route/register");
 const productRoute = require("./Route/Product");
+const getHomepage=require("./Route/getHomepage")
 /*
 mongoose
   .connect(process.env.CONNECTION)

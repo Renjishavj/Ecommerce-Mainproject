@@ -10,16 +10,11 @@ import { useState } from 'react'
 
 function HomePage() {
 
- 
-  return (
-    <>
-    
+ return (
+  <>
     <Header/>
-    
     <Banner/>
-   
-    <Categories/>
-    
+   <Categories/>
     <h1 className='more-heading'>More To Love</h1>
     <MoreItems/>
     <MoreItems/>
@@ -27,12 +22,9 @@ function HomePage() {
     <MoreItems/>
     <MoreItems/>
     <Footer/>
-    
-    
-    </>
+  </>
    
-    
-  )
+)
 }
 
 export default HomePage

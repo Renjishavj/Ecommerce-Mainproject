@@ -5,15 +5,29 @@ const Keyboard = require("../Schema/keyboardSchema");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-router.get("/:productId", async (req, res) => {
-  const productId = req.params.productId;
-  const product = await Product.findById(productId);
-  console.log(product);
-  res.status(200).json(product);
+
+//fetch
+router.get("/:_id", async (req, res) => {
+  try {
+    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    console.log("db connected");
+    const {
+      _id
+    } = req.body;
+      //const _id = req.params._id;
+      const product = await Keyboard.find();
+      console.log(product);
+      res.status(200).json(product);
+      mongoose.disconnect();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "failed to" });
+  }
 });
 
+
 //add product
-router.post("/keyboard", async (req, res) => {
+router.post("/:_id", async (req, res) => {
   try {
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
@@ -58,6 +72,62 @@ router.post("/keyboard", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
+  }
+});
+
+// Update product
+router.put("/:_id", async (req, res) => {
+  const { _id } = req.params;
+
+  try {
+    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    console.log("db connected");
+
+    const {
+      title,
+      rating,
+      price,
+      image,
+      cartone,
+      carttwo,
+      cartthree,
+      description,
+      count,
+      category
+    } = req.body;
+
+    const categoryMapping = {
+      0: "guitar",
+      1: "keyboard"
+    };
+
+    const updatedProduct = await Keyboard.findByIdAndUpdate(
+      _id,
+      {
+        title,
+        rating,
+        price,
+        image,
+        cartone,
+        carttwo,
+        cartthree,
+        description,
+        count,
+        category: categoryMapping[category]
+      },
+      { new: true } 
+    );
+
+    if (updatedProduct) {
+      res.status(200).json({ message: "product updated", updatedProduct });
+    } else {
+      res.status(404).json({ error: "product not found" });
+    }
+
+    mongoose.disconnect();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "failed to update product" });
   }
 });
 
