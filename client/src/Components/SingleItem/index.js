@@ -10,7 +10,6 @@ function SinglePage() {
     <Single/>
     <MoreItems/>
     <MoreItems/>
-    <MoreItems/>
     <Footer/>
     </>
   )

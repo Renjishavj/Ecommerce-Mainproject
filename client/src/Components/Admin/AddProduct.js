@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Admin.css";
 import axios from "axios";
+
 const AddProduct = () => {
-  const [productData, setProductData] = useState({
+  const initialProductData = {
     id: "",
     title: "",
     rating: "",
@@ -14,10 +15,32 @@ const AddProduct = () => {
     description: "",
     count: "",
     category: "",
-  });
+  };
+
+  const [productData, setProductData] = useState(initialProductData);
+  const [isDuplicateId, setIsDuplicateId] = useState(false);
+  useEffect(() => {
+   
+    setProductData(initialProductData);
+  }, []); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "rating") {
+      const numericValue = parseFloat(value);
+      if (numericValue < 0 || numericValue > 5) {
+        alert("Rating must be between 0 and 5");
+        return;
+      }
+    }
+
+    if (["rating", "price", "count", "stock"].includes(name) && parseFloat(value) < 0) {
+      alert(`${name} cannot be a negative number`);
+      return;
+    }
+
+   
     setProductData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,6 +54,7 @@ const AddProduct = () => {
       category: value,
     }));
   };
+
   const handleAddProduct = async () => {
     try {
       const _id = productData.id;
@@ -44,6 +68,7 @@ const AddProduct = () => {
       const description = productData.description;
       const count = productData.count;
       const category = productData.category;
+
       const response = await axios.post(
         `http://localhost:3300/product/${_id}`,
         {
@@ -60,16 +85,18 @@ const AddProduct = () => {
           category,
         }
       );
+
       if (response.status === 200 || response.status === 201) {
-        console.log("Registration successful!");
-        alert("product added");
+        console.log("Product added successfully!");
+        alert("Product added");
+        setProductData(initialProductData);
       } else {
         const errorData = response.data;
         console.error(errorData.message);
       }
     } catch (error) {
       console.error("Error adding product:", error);
-      alert("Error adding product. Please try again.");
+      alert("duplicate Id. Please try again.");
     }
   };
 
@@ -77,7 +104,7 @@ const AddProduct = () => {
     <div className="addProduct">
       <h1 className="add-prohead">ADD PRODUCT</h1>
       <div className="add-pro">
-        <div  className="inputscartscategory">
+      <div  className="inputscartscategory">
           <div><label htmlFor="title">Category</label></div>
           <div>
           <select value={productData.category} onChange={handleCategoryChange}>
@@ -129,7 +156,7 @@ const AddProduct = () => {
             {" "}
             <input
             className="ratescale input-form" 
-              type="text"
+              type="number"
               id="rating"
               name="rating"
               min="0"
@@ -187,7 +214,7 @@ const AddProduct = () => {
               type="text"
               id="addImage1"
               className="input-form"
-              name="addImage1"
+              name="cartone"
               value={productData.addImage1}
               onChange={handleChange}
             />
@@ -201,7 +228,7 @@ const AddProduct = () => {
             <input
               type="text"
               id="addImage2"
-              name="addImage2"
+              name="carttwo"
               className="input-form"
               value={productData.addImage2}
               onChange={handleChange}
@@ -217,7 +244,7 @@ const AddProduct = () => {
             <input
               type="text"
               id="addImage3"
-              name="addImage3"
+              name="cartthree"
               className="input-form"
               value={productData.addImage3}
               onChange={handleChange}

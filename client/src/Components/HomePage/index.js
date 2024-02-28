@@ -5,7 +5,6 @@ import Categories from './Categories'
 import Footer from './Footer'
 import MoreItems from './MoreItems'
 import Banner from './Banner'
-import { useState } from 'react'
 
 
 function HomePage() {
@@ -17,10 +16,7 @@ function HomePage() {
    <Categories/>
     <h1 className='more-heading'>More To Love</h1>
     <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
+    
     <Footer/>
   </>
    

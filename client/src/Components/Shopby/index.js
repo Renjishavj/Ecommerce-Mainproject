@@ -9,12 +9,7 @@ function ShopbyPage() {
     <Header/>
     <h1 className='guitars-head'>Electric Guitars</h1>
     <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
+   
     <Footer/>
     </>
   )

@@ -11,15 +11,16 @@ import Stack from '@mui/material/Stack';
 
 
 function Single() {
-  let { id } = useParams();
+  let { _id } = useParams();
   const [products, setProducts] = useState([]);
 
     useEffect(() => {
         
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:3300/product/104'); 
+            const response = await axios.get(`http://localhost:3300/product/${_id}`); 
             setProducts(response.data);
+            console.log(response.data)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -28,20 +29,22 @@ function Single() {
         fetchData();
       }, []); 
   return (
+    
     <div className="car-div">
+      
       <div>
         <Carousel>
           <div>
             <img src={products.image}  className="img-cara"/>
           </div>
           <div>
-            <img src={noimg} alt="" className="img-cara"/>
+            <img src={products.cartone} alt="" className="img-cara"/>
           </div>
           <div>
-            <img src={noimg} alt="" className="img-cara"/>
+            <img src={products.carttwo} alt="" className="img-cara"/>
           </div>
           <div>
-            <img src={noimg} alt="" className="img-cara"/>
+            <img src={products.carrthree} alt="" className="img-cara"/>
           </div>
         </Carousel>
       </div>
@@ -70,6 +73,7 @@ function Single() {
         <div>
             <input type="number" className="price-qty"  placeholder="0"/>
         </div>
+        
         <Link to="/cartpage">
         <div>
             <button className="addtocart-btn">Add to Cart</button>

@@ -7,23 +7,38 @@ const mongoose = require("mongoose");
 
 
 //fetch
-router.get("/:_id", async (req, res) => {
+router.get("/moreproducts", async (req, res) => {
   try {
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
-    const {
-      _id
-    } = req.body;
-      //const _id = req.params._id;
+  
       const product = await Keyboard.find();
       console.log(product);
-      res.status(200).json(product);
+      res.status(200).json({...product});
       mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
   }
 });
+
+//fetchsingle
+router.get('/:_id',async (req,res)=>{
+  try {
+    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    console.log("db connected");
+
+    const {_id} = req.body;
+    const product = await Keyboard.findById({ _id })
+    res.status(200).json({ message:"product", product });
+    console.log(product);
+    mongoose.disconnect();
+
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "failed to" });
+  }
+} )
 
 
 //add product
@@ -38,7 +53,7 @@ router.post("/:_id", async (req, res) => {
       rating,
       price,
       image,
-      catone,
+      cartone,
       carttwo,
       cartthree,
       description,
@@ -58,7 +73,7 @@ router.post("/:_id", async (req, res) => {
       rating: rating,
       price: price,
       image: image,
-      cartone: catone,
+      cartone: cartone,
       carttwo: carttwo,
       cartthree: cartthree,
       description: description,

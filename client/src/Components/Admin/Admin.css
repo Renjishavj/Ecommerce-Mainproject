@@ -2,7 +2,7 @@
     display: flex;
    background-color:  rgb(3, 17, 35);
     justify-content: center;
-    gap: 150px;
+    gap: 120px;
     padding-top: 0px;
     padding-bottom: 10px;
 }
@@ -11,6 +11,14 @@
     padding-left: 50px;
     gap: 100px;
     color: white;
+}
+.logout-admin{
+  color: white;
+  background-color:  rgb(3, 17, 35);
+  border: none;
+  outline: none;
+  font-size: medium;
+   font-weight: bold;
 }
 .search-bar{
     display: flex;

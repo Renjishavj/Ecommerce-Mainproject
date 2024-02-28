@@ -408,15 +408,25 @@ font-weight: bold;
 margin-left: 150px;
 }
 .more-Items{
-display: flex;
-gap: 20px;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 font-weight: bolder;
 padding-top: 25px;
+text-decoration: none;
+}
+.more-Items a{
+  text-decoration: none;
 }
 .more-dress{
-width: 200px;
-margin-left: 15px;
-margin-top: 20px;
+width: 80%;
+height: 80%;
+
+margin-top: -20px;
+margin-top: 10px;
+margin-left: 20px;
+}
+.for-title{
+  
 }
 .more-single-item-one,
 .more-single-item-two,
@@ -424,18 +434,19 @@ margin-top: 20px;
 .more-single-item-four
 ,.more-single-item-five{
 border: 1px solid rgb(229, 226, 226);
-width: 230px;
+max-width: 230px;
 padding-bottom: 20px;
 border-radius: 10px;
+padding-bottom: 0px;
 }
 .more-single-attr{
-width: 171px;
-margin-left: 25px;
+max-width: 200px;
+margin-left: 15px;
 text-align: center;
-padding: 3px;
 border: none;
 outline: none;
 color: black;
+margin-top: 5px;
 }
 .more-single-attr-rating{
 background-color: rgb(68, 168, 68);
@@ -443,10 +454,11 @@ width: 50px;
 color: white;
 border: none;
 outline: none;
-margin-left: 85px;
+margin-left: 90px;
 text-align: center;
-padding: 5px;
+margin-top: -10px;
 border-radius: 5px;
+
 }
 .shopnow-home:hover{
   background-color: white;

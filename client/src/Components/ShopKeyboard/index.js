@@ -9,12 +9,7 @@ function Shopkeyboard() {
     <Header/>
     <h1 className='keyboardhead'>Keyboards</h1>
     <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
-    <MoreItems/>
+    
     <Footer/>
     </>
   )

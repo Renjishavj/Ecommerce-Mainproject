@@ -9,7 +9,7 @@ import ShopPage from "../Shop";
 import CartPage from "../CartPage";
 import BuynowPage from "../Buynow";
 import AdminPage from "../Admin";
-import AddProduct from "../Admin/AddProduct";
+
 
 
 function Routers() {

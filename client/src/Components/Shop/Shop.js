@@ -8,12 +8,7 @@ function Shop() {
     <div>
         <h1 className='shop-heading'>Shop Here....</h1>
       <MoreItems/>
-      <MoreItems/>
-      <MoreItems/>
-      <MoreItems/>
-      <MoreItems/>
-      <MoreItems/>
-      <MoreItems/>
+      
       <Footer/>
 
     </div>

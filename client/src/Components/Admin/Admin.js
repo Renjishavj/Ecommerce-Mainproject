@@ -7,6 +7,13 @@ import {
 import "./Admin.css"
 
 function AdminHeader() {
+
+  const logOut = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem('user')
+    window.location.href = "/";
+  };
+ 
   return (
     <div className='admin-main'>
         <div><h1 className='admin-admin'>Admin</h1></div>
@@ -20,6 +27,9 @@ function AdminHeader() {
            <div><input type="text" placeholder='search'  className='search-admin'/></div> 
            
         </div>
+        
+          <div className="icon-div"><button onClick={logOut} className='logout-admin'>Log out</button></div>
+        
      </div>
      </div>
   )
