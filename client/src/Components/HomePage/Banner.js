@@ -1,7 +1,6 @@
 import React from "react";
 import RegisterPage from "../RegisterPage";
 import { useLogin } from "../../Context/LoginContext";
-import musicbanner from "../../Images/Hero-Image.png"
 import {Link} from "react-router-dom"
 import guitar from "../../Images/guitarr.jpg"
 

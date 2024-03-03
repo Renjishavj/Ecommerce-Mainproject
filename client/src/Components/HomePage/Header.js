@@ -37,6 +37,7 @@ const Header = () => {
     setLoggedIn(false)
     localStorage.removeItem('user')
     localStorage.removeItem('token')
+    window.location.href = "/";
   }
 
 

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../Schema/userSchema");
-
+const Keyboard = require("../Schema/keyboardSchema");
 const nodeMailer = require("nodemailer");
 const sentMail = require("../NodeMailer/sendMail");
 const sendMail = require("../NodeMailer/sendMail");
@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, "confidential", {
       expiresIn: "24hr",
     });
-
+    
     delete user._doc.password;
     res.status(200).json({ token: token, user: user });
   } catch (error) {
@@ -137,8 +137,75 @@ router.post("/updatePassword", async (req, res) => {
   }
 })
 
+//add to cart
+router.post('/cart',async (req,res)=>{
+  try {
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("db connected");
+  
+ 
+   const { email,_id, quantity,image,price ,title} = req.body;
+   const user = await User.findOne({ email: email });
+   console.log(user)
+   if (!user) {
+     return res.status(404).json({ error: "User not found" });
+   }
+  const existingCartItem = user.cart.find(item => item._id.equals(_id));
+   if (existingCartItem) {
+     
+     existingCartItem.quantity += quantity || 1;
+   } else {
+    
+     user.cart.push({
+      productId: _id,
+       quantity: quantity || 1,
+       image:image,
+       price:price,
+       title:title
+     });
+   }
+     await user.save();
+ 
+     res.status(200).json({ message: "Product added to cart successfully", user: user });
+     mongoose.disconnect();
+  } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: "Something went wrong" });
+   console.log(error)
+  }
+ })
 
+ //cartpage
+ 
 
+router.get('/:email', async (req, res) => {
+  try {
+    
+    await mongoose.connect(`${process.env.CONNECTION}`);
+    console.log("Database connected");
 
+    
+    const { email } = req.params;
+    console.log(email);
+
+    
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      console.log("User not found");
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    
+    console.log("User found");
+    res.status(200).json({ cart: user.cart });
+    mongoose.disconnect();
+  } catch (error) {
+   
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong" });
+   
+  } 
+});
 
 module.exports = router;

@@ -5,7 +5,9 @@
     display: flex;
     gap: 200px;
 }
-
+.card-single{
+    width: 430px;
+}
 .pro-title{
     width: 500px;
     font-size: 40px;
@@ -34,6 +36,7 @@
     outline: none;
     color: black
 }
+
 .element {
     color: #FFFF00; 
     background-color: #FFFF00; 
@@ -57,6 +60,20 @@
     display: flex;
     gap: 50px;
     margin-top: 50px;
+}
+.gotocart-btn{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    outline: none;
+    border: 1px solid rgb(3, 17, 35);
+    color: white;
+    background-color: rgb(3, 17, 35);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.outofstock{
+    margin-top: 0px;
+    color: red;
 }
 .addtocart-btn{
     padding-top: 8px;

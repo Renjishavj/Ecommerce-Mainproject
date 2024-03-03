@@ -8,16 +8,19 @@ export const LoginContextProvider = ({ children }) => {
   const [isRegisterVisible, setRegisterVisible] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
+  const [email, setEmail] = useState({});
 
   //functions
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
-
+  
   const toggleVisiblelogin = () => {
     setRegisterVisible(false);
     setLoginVisible(!isLoginVisible);
+   
   };
+ 
 
   const toggleVisibleRegister = () => {
     // Set isLoginVisible to false if isRegisterVisible is true
@@ -36,7 +39,9 @@ export const LoginContextProvider = ({ children }) => {
     loggedIn: loggedIn,
     setLoggedIn: setLoggedIn,
     user: user,
-    setUser: setUser
+    setUser: setUser,
+    email: email,
+    setEmail:setEmail
   };
   return <LoginContext.Provider value={data}>{children}</LoginContext.Provider>;
 };

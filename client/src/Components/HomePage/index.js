@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Style.css"
 import Header from './Header'
 import Categories from './Categories'
 import Footer from './Footer'
 import MoreItems from './MoreItems'
 import Banner from './Banner'
-
 
 function HomePage() {
 
@@ -19,8 +18,9 @@ function HomePage() {
     
     <Footer/>
   </>
-   
 )
 }
 
 export default HomePage
+
+

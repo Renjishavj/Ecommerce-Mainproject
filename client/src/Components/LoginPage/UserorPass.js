@@ -13,7 +13,7 @@ function UserorPass() {
   const [errors, setErrors] = useState();
   const navigate = useNavigate();
 
-  const { toggleVisiblelogin, setLoggedIn, setUser, user } = useLogin();
+  const { toggleVisiblelogin, setLoggedIn, setUser, user,email,setEmail } = useLogin();
 
   const emailRef = useRef();
   const passRef = useRef();
@@ -70,6 +70,7 @@ function UserorPass() {
           setUser(response.data.user);
           localStorage.setItem('user', JSON.stringify(response.data.user));
           toggleVisiblelogin();
+          setEmail(email)
         } else {
           const errorData = response.data;
 

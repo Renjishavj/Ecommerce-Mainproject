@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function More({product}) {
   return (
-    <Link to="/Singleitem">
+    <Link to={`/singleitem/${product._id}`}>
     <div className='more-single-item-one'>
             <div className='for-img'>
                 <img src={product.image} alt="" className='more-dress'/>

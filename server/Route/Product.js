@@ -4,7 +4,7 @@ const Product = require("../Schema/productSchema");
 const Keyboard = require("../Schema/keyboardSchema");
 const router = express.Router();
 const mongoose = require("mongoose");
-
+const User = require("../Schema/userSchema");
 
 //fetch
 router.get("/moreproducts", async (req, res) => {
@@ -28,9 +28,9 @@ router.get('/:_id',async (req,res)=>{
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
 
-    const {_id} = req.body;
-    const product = await Keyboard.findById({ _id })
-    res.status(200).json({ message:"product", product });
+    const {_id} = req.params;
+    const product = await Keyboard.findById({_id})
+    res.status(200).json({ message:"product", product});
     console.log(product);
     mongoose.disconnect();
 
@@ -175,5 +175,8 @@ router.delete("/:_id", async (req, res) => {
       res.status(500).json({ error: "failed to delete product" });
   }
 });
+
+
+ 
 
 module.exports = router;
