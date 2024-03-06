@@ -11,7 +11,7 @@ import { useLogin } from "../../Context/LoginContext";
 function Single() {
   let { _id } = useParams();
   const [product, setProduct] = useState({});
-  const { loggedIn, user , setUser} = useLogin();
+  const { loggedIn, user, setUser } = useLogin();
   const [outOfStock, setOutOfStock] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -49,30 +49,40 @@ function Single() {
         parseInt(document.querySelector(".price-qty").value) || 1;
 
       try {
-        console.log(user.email, _id, quantity,product.image,product.price,product.title);
+        console.log(
+          user.email,
+          _id,
+          quantity,
+          product.image,
+          product.price,
+          product.title
+        );
         const response = await axios.post("http://localhost:3300/route/cart", {
           email: user.email,
           _id: _id,
           quantity: quantity,
-          image:product.image,
-          price:product.price,
-          title:product.title
+          image: product.image,
+          price: product.price,
+          title: product.title,
         });
         console.log(response.data.message);
         alert("added to cart");
         setIsAddedToCart(true);
         setIsInCart(true);
 
-
-
-        const updatedCart = [...user.cart, { productId: _id, quantity: quantity ,image:product.image,price:product.price,title:product.title}];
+        const updatedCart = [
+          ...user.cart,
+          {
+            productId: _id,
+            quantity: quantity,
+            image: product.image,
+            price: product.price,
+            title: product.title,
+          },
+        ];
         const updatedUser = { ...user, cart: updatedCart };
-        setUser(updatedUser)
-        localStorage.setItem("user",JSON.stringify(user));
-      
-      
-      
-      
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(user));
       } catch (error) {
         console.error("Error adding product to cart:", error);
       }
@@ -154,7 +164,7 @@ function Single() {
                   Add to Cart
                 </button>
               ) : (
-                <Link to  ={`/cartpage/${user.email}`}>
+                <Link to={`/cartpage/${user.email}`}>
                   <button className="gotocart-btn" onClick={goToCart}>
                     Go to Cart{" "}
                   </button>
@@ -162,13 +172,12 @@ function Single() {
               )}
             </div>
 
-           
-              <div>
-                <Link to="/orderpage/addaddress">
+            <div>
+              <Link to="/orderpage/addaddress" state={{ product: product, quantity: quantity}}>
                 <button className="buynow-btn">Buy Now</button>
-                </Link>
-              </div>
-            
+              </Link>
+            </div>
+
             <div>
               {!outOfStock ? (
                 <h3 className="outofstock">Out of Stock</h3>

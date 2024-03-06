@@ -7,15 +7,25 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Order.css";
 import noimg from "../../Images/noimage.jpg"
+import { useLocation } from 'react-router-dom';
 
 function ConfirmOrder() {
   const [addresses, setAddresses] = useState([]);
   const { user } = useLogin();
+  const [outOfStock, setOutOfStock] = useState(false);
+  const [product, setProduct] = useState({});
+
+  const { state } = useLocation();
+  const _id = state?._id;
+  const quantity = state?.quantity;
+  console.log("receivingggg",_id)
+  console.log(quantity)
+
   useEffect(() => {
     const email = user.email;
-    console.log(email);
     fetchAddresses(email);
-  }, []);
+   
+  }, [ user.email]);
 
   const fetchAddresses = async (email) => {
     try {
@@ -29,6 +39,26 @@ function ConfirmOrder() {
       console.error("Error fetching addresses:", error);
     }
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (_id) {
+          console.log("produts",_id);
+          const response = await axios.get(`http://localhost:3300/product/${_id}`);
+           
+          setProduct(response.data.product);
+          console.log(response.data);
+          setOutOfStock(response.data.product.count > 0);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [_id]); 
   return (
     <>
       <div className="address-view">
@@ -64,13 +94,25 @@ function ConfirmOrder() {
         ))}
       </div>
 
-      <div className="cong-pro-details">
-                <div><img src={noimg} alt="" className="img-confirm" /></div>
-                <div>
-                <h3>name</h3>
-                <h3>price</h3>
-                <h3>quandity</h3>
-                </div>
+      <div className="conf-div">
+        {Object.keys(_id).length > 0 ? (
+    <>
+      <div>
+        <img src={_id.image} className="img-confirm" alt="noimage" />
+      </div>
+      <div>
+        <h3>{_id.title}</h3>
+        <h3>{_id.price}</h3>
+        <p>{_id.description}</p>
+        <input type="number" className="price-qty" placeholder="0" defaultValue={1} />
+      </div>
+    </>
+  ) : (
+    <div>
+      <img src={noimg} className="img-cara" alt="noimage" />
+      <p>Loading product details...</p>
+    </div>
+  )}
             
       </div>
 
@@ -81,9 +123,7 @@ function ConfirmOrder() {
             <button className="next-btn">Next</button>
           </Link>
         </div>
-        <div>
-          <button className="addanother-btn">Add Another Address</button>
-        </div>
+       
       </div>
     </>
   );
