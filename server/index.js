@@ -9,7 +9,7 @@ app.use(cors());
 app.use(helmet());
 const registerRoute = require("./Route/register");
 const productRoute = require("./Route/Product");
-const getHomepage=require("./Route/getHomepage")
+
 /*
 mongoose
   .connect(process.env.CONNECTION)
@@ -24,6 +24,7 @@ mongoose
 app.use(express.json());
 app.use("/route", registerRoute);
 app.use("/product", productRoute);
+
 
 app.listen(3300, () => {
   console.log("Server is running on port 3300");

@@ -164,7 +164,9 @@ function Single() {
 
             <Link to="/buynow">
               <div>
+                <Link to="/orderpage">
                 <button className="buynow-btn">Buy Now</button>
+                </Link>
               </div>
             </Link>
             <div>

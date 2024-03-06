@@ -26,9 +26,11 @@ function AdminSidebar() {
       </div>
       <div>
         <FaBox className="dashboarsicons" />
+        <Link to="products">
         <span className="icon-text">
           <button className="side-btns">Products</button>
         </span>
+        </Link>
       </div>
       <div>
         <FaPlus className="dashboarsicons" />

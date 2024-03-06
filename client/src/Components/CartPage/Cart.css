@@ -2,7 +2,7 @@
     display: flex;
     gap: 50px;
     margin-top: 50px;
-    margin-left: 150px;
+   
     margin-bottom: 50px;
    
 }
@@ -10,22 +10,34 @@
     display: flex;
     gap: 80px;
     border: 2px solid black;
-    padding: 20px;
+    padding: 0px;
+    
     
 }
 .cart-one-right{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0px;
+    
 }
 .cart-img{
    width: 180px;
 }
+.totalamt-inp{
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    font-weight: bolder;
+    font-size: larger;
+    color: red;
+}
 .cart-price{
     border: 2px solid black;
-    padding-left: 20px;
+    padding-left: 50px;
     padding-right: 20px;
     padding-bottom: 30px;
+    display: flex;
+    gap: 100px;
 }
 .each-price{
     display: flex;
@@ -53,14 +65,22 @@
    
     
 }
+.single-buttons{
+    display: flex;
+    gap: 26px;
+
+}
 .cart-cartbutton{
-    padding-top: 5px;
-    padding-bottom: 5px;
-   padding-left: 10px;
-   padding-right: 10px;
+  
+   background-color: rgb(3, 17, 35);
+   color: white;
+   border:none;
+   outline: none;
 }
 .cart-section{
     overflow-y: scroll;
+    margin-left: 130px;
+   
 }
 .cart-section::-webkit-scrollbar {
     display: none;

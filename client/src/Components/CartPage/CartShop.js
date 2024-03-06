@@ -3,44 +3,62 @@ import "./Cart.css";
 import axios from "axios";
 import { useLogin } from "../../Context/LoginContext";
 import CartSingle from "./CartSingle";
+import Cartbilling from "./Cartbilling";
 
 function CartShop() {
   const [cart, setCart] = useState([]);
   const { user } = useLogin();
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       try {
-        const email = user.email;
-        console.log(email)
-        const response = await axios.get(`http://localhost:3300/route/${email}`);
-        setCart(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        if (user && user.email) {
+          const email = user.email;
+          console.log(email);
+          const res = await axios.get(
+            `http://localhost:3300/route/${email}/cart`
+          );
+          setCart(res.data);
+        }
+      } catch (err) {
+        console.log(err);
       }
-    };
+    })();
+  }, [user, user.cart]);
 
-    fetchData();
-  }, [user.email]);
-
-  const removeItemFromCart = (productId) => {
-    
-    const updatedCart = cart.filter(item => item.productId !== productId);
+  const removeFromCart = async (productId) => {
+    try {
+      const email = user.email;
+      await axios.delete(`http://localhost:3300/route/${productId}/cart/delete`, {
+        data: { email }, 
+      });
   
-   
-    setCart(updatedCart);
-  }
+      setCart((prevCart) => prevCart.filter((item) => item.productId !== productId));
+      alert("one item deleted from cart")
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <div className="cart-section">
-      {user.cart ? (
-        user.cart.map((item) => (
-          <CartSingle product={item} key={item.productId} removeItemFromCart={removeItemFromCart} />
+      
+      {cart ? (
+        cart.map((item) => (
+          <div key={item.productId}>
+            <CartSingle product={item} removeFromCart={removeFromCart} />
+           
+           
+          </div>
         ))
       ) : (
         <p>No items in the cart</p>
       )}
+      <div>
+      <Cartbilling cart={cart} />
+      </div>
+       
     </div>
   );
 }

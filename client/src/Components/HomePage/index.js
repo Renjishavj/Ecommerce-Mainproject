@@ -5,6 +5,7 @@ import Categories from './Categories'
 import Footer from './Footer'
 import MoreItems from './MoreItems'
 import Banner from './Banner'
+import More from './More'
 
 function HomePage() {
 

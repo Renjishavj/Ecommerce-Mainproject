@@ -6,7 +6,7 @@ import MoreItems from "../HomePage/MoreItems"
 function SinglePage() {
   return (
     <>
-    <Header/>
+   
     <Single/>
     <MoreItems/>
     <MoreItems/>

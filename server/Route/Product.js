@@ -11,11 +11,11 @@ router.get("/moreproducts", async (req, res) => {
   try {
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
-  
-      const product = await Keyboard.find();
-      console.log(product);
-      res.status(200).json({...product});
-      mongoose.disconnect();
+
+    const product = await Keyboard.find();
+    console.log(product);
+    res.status(200).json({ ...product });
+    mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
@@ -40,7 +40,6 @@ router.get('/:_id',async (req,res)=>{
   }
 } )
 
-
 //add product
 router.post("/:_id", async (req, res) => {
   try {
@@ -58,14 +57,13 @@ router.post("/:_id", async (req, res) => {
       cartthree,
       description,
       count,
-      category
+      category,
     } = req.body;
 
     const categoryMapping = {
       0: "guitar",
-      1: "keyboard"
+      1: "keyboard",
     };
-
 
     const keyboard = new Keyboard({
       _id: _id,
@@ -78,11 +76,11 @@ router.post("/:_id", async (req, res) => {
       cartthree: cartthree,
       description: description,
       count: count,
-      category: categoryMapping[category]
+      category: categoryMapping[category],
     });
     await keyboard.save();
     res.status(200).json({ message: "product added" });
-    console.log(keyboard)
+    console.log(keyboard);
     mongoose.disconnect();
   } catch (error) {
     console.log(error);
@@ -108,12 +106,12 @@ router.put("/:_id", async (req, res) => {
       cartthree,
       description,
       count,
-      category
+      category,
     } = req.body;
 
     const categoryMapping = {
       0: "guitar",
-      1: "keyboard"
+      1: "keyboard",
     };
 
     const updatedProduct = await Keyboard.findByIdAndUpdate(
@@ -128,9 +126,9 @@ router.put("/:_id", async (req, res) => {
         cartthree,
         description,
         count,
-        category: categoryMapping[category]
+        category: categoryMapping[category],
       },
-      { new: true } 
+      { new: true }
     );
 
     if (updatedProduct) {
@@ -151,32 +149,29 @@ router.delete("/:_id", async (req, res) => {
   const { _id } = req.params;
   const { category } = req.query;
   try {
-   
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
-     const categoryMapping = {
+    const categoryMapping = {
       0: "guitar",
-      1: "keyboard"
+      1: "keyboard",
     };
     const deleteProduct = await Keyboard.findOneAndDelete({
       _id,
-      category: categoryMapping[category]
+      category: categoryMapping[category],
     });
     if (deleteProduct) {
       res.status(200).json({ message: "product deleted" });
+      console.log("product deleted")
     } else {
       res.status(400).json({ error: "product not found" });
+      console.log("cant delete")
     }
 
     mongoose.disconnect();
-
   } catch (error) {
-      console.log(error)
-      res.status(500).json({ error: "failed to delete product" });
+    console.log(error);
+    res.status(500).json({ error: "failed to delete product" });
   }
 });
-
-
- 
 
 module.exports = router;

@@ -10,6 +10,8 @@ import CartPage from "../CartPage";
 import BuynowPage from "../Buynow";
 import AdminPage from "../Admin";
 import { useLogin } from "../../Context/LoginContext";
+import AddAddress from "../OrderNow/AddAddress";
+import OrderPage from "../OrderNow";
 
 function Routers() {
   const { setLoggedIn, setUser } = useLogin();
@@ -33,6 +35,8 @@ function Routers() {
         <Route path="/cartpage/:email" element={<CartPage />} />
         <Route path="/buynow" element={<BuynowPage />} />
         <Route path="/adminpage/*" element={<AdminPage />} />
+        <Route path="/orderpage/*" element={<OrderPage/>} />/
+        
       </Routes>
     </BrowserRouter>
   );

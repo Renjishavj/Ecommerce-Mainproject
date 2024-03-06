@@ -14,6 +14,7 @@ import logoimg from "../../Images/headlogo.png";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import { useLogin } from "../../Context/LoginContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const {
@@ -131,9 +132,20 @@ const Header = () => {
             </div>
           )}
           <div className="cart-num">
+            {loggedIn && (
             <div>
+              <Link to ="/cartpage/:email">
               <FaShoppingCart className="cart-icon" />
+              </Link>
             </div>
+            )}
+             {!loggedIn && (
+            <div>
+             
+              <FaShoppingCart className="cart-icon" />
+              
+            </div>
+            )}
             <div>
               <input type="text" placeholder="8" className="cart-qty" />
             </div>

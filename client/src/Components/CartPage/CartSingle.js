@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useLogin } from "../../Context/LoginContext";
 import noimg from "../../Images/noimage.jpg";
 import "./Cart.css";
 
-function CartSingle(user,removeItemFromCart) {
-  console.log(user);
+function CartSingle({product,removeFromCart}) {
+  const [quantity, setQuantity] = useState(product.quantity);
 
-  const  handleRemove = () => {
-    removeItemFromCart(user.product.id);
-  }
+
+ 
+
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value, 10);
+
+    if (!isNaN(newQuantity) && newQuantity > 0) {
+      setQuantity(newQuantity);
+      
+    }
+  };
+console.log(product)
   return (
     <div className="cart">
       <div>
-        <img src={user.product.image} alt="" className="cart-img" />
+        {product.image ? (
+          <img src={product.image} alt="" className="cart-img" />
+        ) : (
+          <img src={noimg} alt="No Image" className="cart-img" />
+        )}
       </div>
       <div className="cart-one-right">
         <div>
-          <h2 className="inp-cart">{user.product.title}</h2>
+          <h2 className="inp-cart">{product.title}</h2>
         </div>
         <div>
           <select name="size" id="sizeSelect" placeholder="size">
@@ -26,13 +41,24 @@ function CartSingle(user,removeItemFromCart) {
           </select>
         </div>
         <div>
-          <h2 className="inp-cart">{user.product.price}</h2>
+          <h2 className="inp-cart">{product.price}</h2>
         </div>
         <div>
-          <input type="number" placeholder={user.product.quantity} />
+        <input
+            type="number"
+            placeholder={product.quantity}
+            value={quantity}
+            onChange={handleQuantityChange}
+          />
         </div>
-        <div>
-          <button  onClick={handleRemove}>Remove</button>
+        <div className="single-buttons">
+          <div >
+          <button  onClick={() => removeFromCart(product._id)} className="cart-cartbutton">Remove</button>
+          </div>
+          <div>
+          <button className="cart-cartbutton">Buy Now</button>
+          </div>
+          
         </div>
       </div>
     </div>
