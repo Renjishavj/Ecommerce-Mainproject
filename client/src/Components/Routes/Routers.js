@@ -36,6 +36,7 @@ function Routers() {
         <Route path="/buynow" element={<BuynowPage />} />
         <Route path="/adminpage/*" element={<AdminPage />} />
         <Route path="/orderpage/*" element={<OrderPage/>} />/
+        <Route path="/addaddress" element={<AddAddress/>} />/
         
       </Routes>
     </BrowserRouter>

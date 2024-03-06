@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLogin } from "../../Context/LoginContext";
 import noimg from "../../Images/noimage.jpg";
 import "./Cart.css";
+import { Link } from "react-router-dom";
 
 function CartSingle({product,removeFromCart}) {
   const [quantity, setQuantity] = useState(product.quantity);
@@ -56,7 +57,9 @@ console.log(product)
           <button  onClick={() => removeFromCart(product._id)} className="cart-cartbutton">Remove</button>
           </div>
           <div>
+          <Link to="/orderpage/addaddress">
           <button className="cart-cartbutton">Buy Now</button>
+          </Link>
           </div>
           
         </div>

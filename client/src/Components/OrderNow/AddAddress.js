@@ -61,7 +61,7 @@ function AddAddress() {
     .then(response => {
       console.log('Address details saved:', response.data);
       alert("address saved")
-      navigate('confirm');
+      navigate('/orderpage/confirm');
     })
     .catch(error => {
       console.error('Error adding address:', error);

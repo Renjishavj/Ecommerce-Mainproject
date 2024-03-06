@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const Product = require("../Schema/productSchema");
 const Keyboard = require("../Schema/keyboardSchema");
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -88,6 +87,8 @@ router.post("/:_id", async (req, res) => {
   }
 });
 
+
+
 // Update product
 router.put("/:_id", async (req, res) => {
   const { _id } = req.params;
@@ -114,20 +115,22 @@ router.put("/:_id", async (req, res) => {
       1: "keyboard",
     };
 
+    
+    const updateFields = {};
+    if (title) updateFields.title = title;
+    if (rating) updateFields.rating = rating;
+    if (price) updateFields.price = price;
+    if (image) updateFields.image = image;
+    if (cartone) updateFields.cartone = cartone;
+    if (carttwo) updateFields.carttwo = carttwo;
+    if (cartthree) updateFields.cartthree = cartthree;
+    if (description) updateFields.description = description;
+    if (count) updateFields.count = count;
+    if (category !== undefined) updateFields.category = categoryMapping[category];
+
     const updatedProduct = await Keyboard.findByIdAndUpdate(
       _id,
-      {
-        title,
-        rating,
-        price,
-        image,
-        cartone,
-        carttwo,
-        cartthree,
-        description,
-        count,
-        category: categoryMapping[category],
-      },
+      updateFields,
       { new: true }
     );
 
@@ -143,6 +146,7 @@ router.put("/:_id", async (req, res) => {
     res.status(500).json({ error: "failed to update product" });
   }
 });
+
 
 //delete product
 router.delete("/:_id", async (req, res) => {

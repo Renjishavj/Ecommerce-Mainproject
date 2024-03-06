@@ -303,7 +303,6 @@ router.get("/fetchaddress/:email", async (req, res) => {
 
 
 
-
 const getUserProducts = async (arrayToMap) => {
   let arrayToFind = [];
   let quantityArray = [];

@@ -3,6 +3,7 @@ import AddAddress from './AddAddress';
 import ConfirmOrder from './ConfirmOrder';
 import PayNow from './PayNow';
 import Header from '../HomePage/Header';
+import Editaddress from "./Editaddress"
 import './Order.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
@@ -33,6 +34,7 @@ function OrderPage() {
           <Route path="/addaddress" element={<AddAddress />} />
           <Route path="/confirm" element={<ConfirmOrder />} />
           <Route path="/paypage" element={<PayNow />} />
+          <Route path='/editaddress' element={<Editaddress/>}/>
         </Routes>
       </div>
       

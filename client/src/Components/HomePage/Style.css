@@ -69,6 +69,14 @@
   margin-top: 0px;
   margin-left: 10px;
 }
+.logout-btn{
+  color: white;
+  background-color:  rgb(3, 17, 35);
+  border: none;
+  outline: none;
+  font-size: medium;
+   font-weight: bold;
+}
 .icon-div{
   display: flex;
   gap: 10px;

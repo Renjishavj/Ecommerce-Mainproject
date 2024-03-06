@@ -54,7 +54,11 @@ function ConfirmOrder() {
               <div>
                 <h3>ZipCode: {address.zipCode}</h3>
               </div>
-              <div><button className="edt-address">Edit</button></div>
+              <div>
+                <Link to="/orderpage/editaddress">
+                <button className="edt-address">Edit</button>
+                </Link>
+                </div>
             </div>
           </div>
         ))}
@@ -73,7 +77,7 @@ function ConfirmOrder() {
       <div className="conf-btn">
         <div>
           {" "}
-          <Link to="paypage">
+          <Link to="/orderpage/paypage">
             <button className="next-btn">Next</button>
           </Link>
         </div>

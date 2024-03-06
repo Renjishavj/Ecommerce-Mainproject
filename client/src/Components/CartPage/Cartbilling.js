@@ -1,7 +1,7 @@
 import React from 'react'
 import { useProduct } from "../../Context/ProductContext"
 import { useState,useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 
 function Cartbilling({ cart }) {
   
@@ -40,7 +40,9 @@ const getTotalAmount = () => {
              <input type='text' value={getTotalAmount()} readOnly  className='totalamt-inp'/> 
           </div>
         <div className='each-cartbtn'>
+        <Link to="/orderpage/addaddress">
           <button className='cart-cartbutton'>Place Order</button>
+          </Link>
         </div>
      
     </div>

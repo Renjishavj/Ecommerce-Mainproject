@@ -154,7 +154,7 @@ const Header = () => {
           <div className="icon-div"><FaHeart className="wishlist-icon" /></div>
           }
           {loggedIn &&
-          <div className="icon-div"><button onClick={LogOut}>Log out</button></div>
+          <div className="icon-div"><button onClick={LogOut} className="logout-btn">Log out</button></div>
           }
         </div>
       </div>

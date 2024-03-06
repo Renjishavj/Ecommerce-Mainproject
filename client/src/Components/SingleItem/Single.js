@@ -162,13 +162,13 @@ function Single() {
               )}
             </div>
 
-            <Link to="/buynow">
+           
               <div>
-                <Link to="/orderpage">
+                <Link to="/orderpage/addaddress">
                 <button className="buynow-btn">Buy Now</button>
                 </Link>
               </div>
-            </Link>
+            
             <div>
               {!outOfStock ? (
                 <h3 className="outofstock">Out of Stock</h3>

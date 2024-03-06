@@ -7,6 +7,7 @@ import {Routes,Route} from "react-router-dom"
 import Dashboard from './Dashboard'
 import DeleteProduct from './DeleteProduct'
 import UpdateProduct from './UpdateProduct'
+import Footer from "../HomePage/Footer"
 import "./Admin.css"
 import Products from './Products'
 function AdminPage() {
@@ -21,10 +22,11 @@ function AdminPage() {
         <Route path="/addproduct" element={<AddProduct/>}/>
         <Route path="/deleteproduct" element={<DeleteProduct/>}/>
         <Route path="/updateproduct" element={<UpdateProduct/>}/>
-        <Route path="/products" element={<Products/>}/>
+        <Route path="/products/*" element={<Products/>}/>
         </Routes>
       </div>
     </div>
+    <Footer/>
     </>
   )
 }
