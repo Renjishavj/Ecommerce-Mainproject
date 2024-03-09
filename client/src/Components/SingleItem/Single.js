@@ -7,6 +7,7 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import "./Single.css";
 import { useLogin } from "../../Context/LoginContext";
+import { useNavigate} from "react-router-dom";
 
 function Single() {
   let { _id } = useParams();
@@ -16,7 +17,7 @@ function Single() {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [isInCart, setIsInCart] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,14 +41,25 @@ function Single() {
       setIsInCart(user.cart.some(({ productId }) => -productId === -_id));
     }
   }, [user.cart]);
+  
+ 
 
   const handleAddToCart = async () => {
     if (!loggedIn) {
       alert("Please log in");
     } else {
       const quantity =
-        parseInt(document.querySelector(".price-qty").value) || 1;
-
+        parseInt(document.querySelector(".price-qty").value) ;
+        if (isNaN(quantity) || quantity <= 0) {
+          alert("Please enter a valid non-negative quantity for the product.");
+          return;
+        }
+        if (quantity > product.count) {
+          console.log(product.count)
+          alert(`Quantity exceeds available stock,avaliable stock is ${product.count}`);
+          return;
+        }
+    
       try {
         console.log(
           user.email,
@@ -88,21 +100,11 @@ function Single() {
       }
     }
   };
-
-  /*useEffect(() => {
-      if (localStorage.getItem('user')) {
-        const usercart = JSON.parse(localStorage.getItem('user'));
-        console.log(usercart)
   
-        if (usercart && usercart.cart) {
-          const isInCart = usercart.cart.some(item => item.productId === _id);
-           setIsInCart(isInCart);
-           return console.log(isInCart)
-          
-        } 
-        
-      }
-    }, [_id]);*/
+  const handleGoToBuy=async()=>{
+    navigate("/orderpage/addaddress", { state: { product: product, quantity: quantity}});
+  }
+ 
 
   const goToCart = () => {
     console.log("Redirecting to Cart");
@@ -173,9 +175,9 @@ function Single() {
             </div>
 
             <div>
-              <Link to="/orderpage/addaddress" state={{ product: product, quantity: quantity}}>
-                <button className="buynow-btn">Buy Now</button>
-              </Link>
+              
+                <button className="buynow-btn" onClick={handleGoToBuy}> Buy Now</button>
+              
             </div>
 
             <div>

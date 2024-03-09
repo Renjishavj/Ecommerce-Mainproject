@@ -10,6 +10,8 @@ import Footer from "../HomePage/Footer";
 function AddAddress() {
   const { state } = useLocation();
   const [addresses, setAddresses] = useState([]);
+
+  //required ???
   const [contactName, setContactName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [streetHouseNo, setStreetHouseNo] = useState("");
@@ -19,7 +21,9 @@ function AddAddress() {
   const isValidMobileNumber = (number) => /^\d{10}$/.test(number);
   const isValidZipCode = (code) => /^\d{6}$/.test(code);
   const { user } = useLogin();
+  const [showForm, setShowForm] = useState(false);
 
+  //but y ?
   const [address, setAddress] = useState({
     contactName: "",
     mobile: "",
@@ -81,7 +85,8 @@ function AddAddress() {
       .then((response) => {
         console.log("Address details saved:", response.data);
         alert("address saved");
-        navigate("/orderpage/confirm", { state: { productId: state.product } });
+        console.log(state.product);
+        navigate("/orderpage/confirm", { state: { product: state.product } });
       })
       .catch((error) => {
         console.error("Error adding address:", error);
@@ -89,49 +94,56 @@ function AddAddress() {
       });
   };
   const handleNext = () => {
-    navigate("/orderpage/confirm", { state: { _id: state.product } });
+    navigate("/orderpage/confirm", { state: { product: state.product, cart: state.cart } });
+  };
+  const handleAddAnother = () => {
+    setShowForm(true);
   };
 
   return (
     <>
+     {addresses.length > 0 && !showForm ? (
+      <ul>
       <div className="entered-address">
+        <h3>Your Address</h3>
         {addresses.map((address, index) => (
+          <li>
           <div key={index}>
-            <div className="add-mapone">
+            
+           
               <div>
-                <h3>ContactName: {address.contactName}</h3>
+                <p>{address.contactName}</p>
               </div>
-              <div>
-                <h3>Mobile: {address.mobile}</h3>
-              </div>
-              <div>
-                <h3>House: {address.street}</h3>
-              </div>
+              <div className="add-mapone">
+                <p>{address.street}</p>
+                <p>,{address.city}</p> 
+                <p>,{address.zipCode}(PIN)</p>
             </div>
             <div className="add-mapone">
-              <div>
-                {" "}
-                <h3>City: {address.city}</h3>
-              </div>
-              <div>
-                <h3>ZipCode: {address.zipCode}</h3>
-              </div>
-              <div className="edit-next">
+            <p>{address.mobile}</p>
+            </div>
+                
+                
+          </div>
+          </li>
+        ))}
+        <div className="edit-next">
                 <div>
-                  <Link to="/orderpage/editaddress">
-                    <button className="edt-address">Edit</button>
-                  </Link>
+                 
+                    <button className="edt-address" onClick={handleAddAnother}>Add Another</button>
+                  
                 </div>
                 <div>
-                  <button className="edt-address" onClick={handleNext}>
+                  <button className="next-address" onClick={handleNext}>
                     Next
                   </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
+      </div>
+      
+      </ul>
+      
+      ):(
       <div className="addaddress-form">
         <div>
           <input
@@ -192,6 +204,7 @@ function AddAddress() {
           </button>
         </div>
       </div>
+      )}
       <Footer />
     </>
   );

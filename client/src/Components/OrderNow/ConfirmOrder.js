@@ -9,16 +9,17 @@ import "./Order.css";
 import noimg from "../../Images/noimage.jpg"
 import { useLocation } from 'react-router-dom';
 
+
 function ConfirmOrder() {
   const [addresses, setAddresses] = useState([]);
   const { user } = useLogin();
   const [outOfStock, setOutOfStock] = useState(false);
   const [product, setProduct] = useState({});
-
+  const navigate = useNavigate();
   const { state } = useLocation();
-  const _id = state?._id;
+  const Product = state?.product;
   const quantity = state?.quantity;
-  console.log("receivingggg",_id)
+  console.log("receivingggg",Product)
   console.log(quantity)
 
   useEffect(() => {
@@ -39,72 +40,93 @@ function ConfirmOrder() {
       console.error("Error fetching addresses:", error);
     }
   };
+ const handleGoToPay=()=>{
+  try {
+   
+    console.log("pro count",Product.count)
+    console.log("product.quandity",Product.quantity)
 
+    const quantity = parseInt(document.querySelector(".price-qty").value, 10);
+    if (isNaN(quantity) || quantity <= 0) {
+      alert("Please enter a valid non-negative quantity for the product.");
+      return;
+    }
+   
+    if (quantity > Product.count) {
+      alert(`Limit exceeded.Available stock.${Product.count}`);
+      return;
+    }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (_id) {
-          console.log("produts",_id);
-          const response = await axios.get(`http://localhost:3300/product/${_id}`);
-           
-          setProduct(response.data.product);
-          console.log(response.data);
-          setOutOfStock(response.data.product.count > 0);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    const selectedAddress = addresses.find((address) => {
+      const radioElement = document.getElementById(`address-radio-${address._id}`);
+      return radioElement.checked;
+    });
 
-    fetchData();
-  }, [_id]); 
+    if (!selectedAddress) {
+      alert("Please select an address.");
+      return;
+    }
+
+    
+
+    navigate("/orderpage/paypage");
+  } catch (error) {
+    console.log(error);
+    alert("please select the address or product")
+  }
+  
+ }
+
   return (
     <>
       <div className="address-view">
         <h2 className="address-head">Your Address</h2>
+         
         {addresses.map((address, index) => (
-          <div key={index}>
-            <div className="add-mapone">
+         
+          <div key={index} className="conf-div">
+            <div className="add-mapone-conf">
               <div>
-                <h3>ContactName: {address.contactName}</h3>
+                <input type="radio"  name="address" className="radio-confirm" id={`address-radio-${address._id}`}/>
               </div>
               <div>
-                <h3>Mobile: {address.mobile}</h3>
+                <h5>ContactName: {address.contactName}</h5>
               </div>
               <div>
-                <h3>House: {address.street}</h3>
+                <h5>Mobile: {address.mobile}</h5>
+              </div>
+              <div>
+                <h5>House: {address.street}</h5>
               </div>
             </div>
             <div className="add-mapone">
               <div>
                 {" "}
-                <h3>City: {address.city}</h3>
+                <h5>City: {address.city}</h5>
               </div>
               <div>
-                <h3>ZipCode: {address.zipCode}</h3>
+                <h5>ZipCode: {address.zipCode}</h5>
               </div>
-              <div>
-                <Link to="/orderpage/editaddress">
-                <button className="edt-address">Edit</button>
-                </Link>
-                </div>
+              
             </div>
           </div>
+        
         ))}
       </div>
+      
+
 
       <div className="conf-div">
-        {Object.keys(_id).length > 0 ? (
+        {Object.keys(Product).length > 0 ? (
     <>
       <div>
-        <img src={_id.image} className="img-confirm" alt="noimage" />
+        <img src={Product.image} className="img-confirm" alt="noimage" />
       </div>
       <div>
-        <h3>{_id.title}</h3>
-        <h3>{_id.price}</h3>
-        <p>{_id.description}</p>
-        <input type="number" className="price-qty" placeholder="0" defaultValue={1} />
+        <h3>{Product.title}</h3>
+        <h3>{Product.price}</h3>
+        <p>{Product.description}</p>
+        <input type="number" className="price-qty"  placeholder={Product.quantity} />
       </div>
     </>
   ) : (
@@ -119,9 +141,9 @@ function ConfirmOrder() {
       <div className="conf-btn">
         <div>
           {" "}
-          <Link to="/orderpage/paypage">
-            <button className="next-btn">Next</button>
-          </Link>
+         
+            <button className="next-btn" id="pay-btn" onClick={handleGoToPay}>Pay Now</button>
+         
         </div>
        
       </div>

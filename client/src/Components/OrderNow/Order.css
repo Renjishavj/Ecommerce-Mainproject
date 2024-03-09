@@ -54,6 +54,7 @@
  .edit-next{
     display: flex;
     gap: 20px;
+  
  }
  .addanother-btn{
     background-color: rgb(3, 17, 35); 
@@ -68,17 +69,32 @@
  .conf-btn{
     display: flex;
     gap: 30px;
-    margin-top: 70px;
+    margin-top: 30px;
+    padding-bottom: 50px;
  }
 .add-mapone{
     display: flex;
-    gap: 80px;
+    gap: 0px;
+    margin-top: -15px;
 }
-.address-view{
-    margin-left: 280px;
+.add-mapone-conf{
+    display: flex;
+    gap: 35px;
+    margin-top: -15px;
+}
+.col-address{
+    display: flex;
+   flex-direction: column;
+   
+}
+.conf-div{
+    display: flex;
+    gap: 0px;
+   margin-top: 10px;
 }
 .address-head{
     color:  rgb(3, 17, 35);
+    margin-left: 280px;
 }
 .img-confirm{
     width: 200px;
@@ -104,11 +120,26 @@
     border: none;
     outline: none;
     color: white;
+    width: 90px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+.next-address{
+    background-color: rgb(3, 17, 35); 
+    border: none;
+    outline: none;
+    color: white;
     width: 50px;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 20px;
 }
 .entered-address{
-    margin-left: 280px;
+    margin-left: 600px;
+    padding-top: 10px;
+    padding-bottom: 360px;
+}
+.radio-confirm{
+    margin-top: 25px;
 }

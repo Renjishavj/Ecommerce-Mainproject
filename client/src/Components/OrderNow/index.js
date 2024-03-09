@@ -7,7 +7,7 @@ import Editaddress from "./Editaddress"
 import './Order.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
-
+import Footer from "../HomePage/Footer"
 function OrderPage() {
   return (
     <>
@@ -37,7 +37,7 @@ function OrderPage() {
           <Route path='/editaddress' element={<Editaddress/>}/>
         </Routes>
       </div>
-      
+      <Footer/>
     </>
   );
 }

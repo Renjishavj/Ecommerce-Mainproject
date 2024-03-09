@@ -62,8 +62,9 @@
 .each-cartbtn{
     padding-top: 20px;
     margin-left: 213px;
-   
-    
+}
+.quandity-single{
+    width: 30px;
 }
 .single-buttons{
     display: flex;

@@ -27,7 +27,7 @@ const getTotalAmount = () => {
 
   return cart.reduce((total, item) => {
     const itemPrice = item.quantity === 1 ? item.price : item.price * item.quantity;
-    return total + Number(itemPrice); // Convert itemPrice to number
+    return total + Number(itemPrice); 
   }, 0);
 };
 
@@ -40,7 +40,8 @@ const getTotalAmount = () => {
              <input type='text' value={getTotalAmount()} readOnly  className='totalamt-inp'/> 
           </div>
         <div className='each-cartbtn'>
-        <Link to="/orderpage/addaddress">
+        <Link to="/orderpage/addaddress"  state={{ cart: cart}}>
+        
           <button className='cart-cartbutton'>Place Order</button>
           </Link>
         </div>

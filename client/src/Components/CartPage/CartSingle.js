@@ -7,10 +7,7 @@ import { Link } from "react-router-dom";
 
 function CartSingle({product,removeFromCart}) {
   const [quantity, setQuantity] = useState(product.quantity);
-
-
- 
-
+  console.log("product",product)
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
 
@@ -19,7 +16,7 @@ function CartSingle({product,removeFromCart}) {
       
     }
   };
-console.log(product)
+
   return (
     <div className="cart">
       <div>
@@ -50,6 +47,7 @@ console.log(product)
             placeholder={product.quantity}
             value={quantity}
             onChange={handleQuantityChange}
+            className="quandity-single"
           />
         </div>
         <div className="single-buttons">
