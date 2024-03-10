@@ -102,7 +102,7 @@ function Single() {
   };
   
   const handleGoToBuy=async()=>{
-    navigate("/orderpage/addaddress", { state: { product: product, quantity: quantity}});
+    navigate("/orderpage/addaddress", { state: { product: [product]}});
   }
  
 

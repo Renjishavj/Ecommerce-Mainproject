@@ -55,7 +55,7 @@ function CartSingle({product,removeFromCart}) {
           <button  onClick={() => removeFromCart(product._id)} className="cart-cartbutton">Remove</button>
           </div>
           <div>
-          <Link to="/orderpage/addaddress"  state={{ product: product, quantity: quantity}}>
+          <Link to="/orderpage/addaddress" state={{ product: [product], quantity: quantity }}>
           <button className="cart-cartbutton">Buy Now</button>
           </Link>
           </div>

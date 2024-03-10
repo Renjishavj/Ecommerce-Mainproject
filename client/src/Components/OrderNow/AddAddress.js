@@ -9,6 +9,7 @@ import Footer from "../HomePage/Footer";
 
 function AddAddress() {
   const { state } = useLocation();
+  console.log(state.product);
   const [addresses, setAddresses] = useState([]);
 
   //required ???
@@ -94,7 +95,7 @@ function AddAddress() {
       });
   };
   const handleNext = () => {
-    navigate("/orderpage/confirm", { state: { product: state.product, cart: state.cart } });
+    navigate("/orderpage/confirm", { state: { product: state.product } });
   };
   const handleAddAnother = () => {
     setShowForm(true);
@@ -102,108 +103,102 @@ function AddAddress() {
 
   return (
     <>
-     {addresses.length > 0 && !showForm ? (
-      <ul>
-      <div className="entered-address">
-        <h3>Your Address</h3>
-        {addresses.map((address, index) => (
-          <li>
-          <div key={index}>
-            
-           
+      {addresses.length > 0 && !showForm ? (
+        <ul>
+          <div className="entered-address">
+            <h3>Your Address</h3>
+            {addresses.map((address, index) => (
+              <li>
+                <div key={index}>
+                  <div>
+                    <p>{address.contactName}</p>
+                  </div>
+                  <div className="add-mapone">
+                    <p>{address.street}</p>
+                    <p>,{address.city}</p>
+                    <p>,{address.zipCode}(PIN)</p>
+                  </div>
+                  <div className="add-mapone">
+                    <p>{address.mobile}</p>
+                  </div>
+                </div>
+              </li>
+            ))}
+            <div className="edit-next">
               <div>
-                <p>{address.contactName}</p>
+                <button className="edt-address" onClick={handleAddAnother}>
+                  Add Another
+                </button>
               </div>
-              <div className="add-mapone">
-                <p>{address.street}</p>
-                <p>,{address.city}</p> 
-                <p>,{address.zipCode}(PIN)</p>
+              <div>
+                <button className="next-address" onClick={handleNext}>
+                  Next
+                </button>
+              </div>
             </div>
-            <div className="add-mapone">
-            <p>{address.mobile}</p>
-            </div>
-                
-                
           </div>
-          </li>
-        ))}
-        <div className="edit-next">
-                <div>
-                 
-                    <button className="edt-address" onClick={handleAddAnother}>Add Another</button>
-                  
-                </div>
-                <div>
-                  <button className="next-address" onClick={handleNext}>
-                    Next
-                  </button>
-                </div>
-      </div>
-      </div>
-      
-      </ul>
-      
-      ):(
-      <div className="addaddress-form">
-        <div>
-          <input
-            type="text"
-            placeholder="Enter contact name"
-            value={contactName}
-            onChange={(e) => setContactName(e.target.value)}
-            className="inp-feilds"
-          />
-        </div>
+        </ul>
+      ) : (
+        <div className="addaddress-form">
+          <div>
+            <input
+              type="text"
+              placeholder="Enter contact name"
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              className="inp-feilds"
+            />
+          </div>
 
-        <div>
-          <input
-            type="text"
-            placeholder="Enter mobile number"
-            value={mobileNumber}
-            onChange={(e) => setMobileNumber(e.target.value)}
-            className="inp-feilds"
-          />
-        </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Enter mobile number"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              className="inp-feilds"
+            />
+          </div>
 
-        <div>
-          {" "}
-          <input
-            type="text"
-            placeholder="Enter street/house number"
-            value={streetHouseNo}
-            onChange={(e) => setStreetHouseNo(e.target.value)}
-            className="inp-feilds"
-          />
-        </div>
+          <div>
+            {" "}
+            <input
+              type="text"
+              placeholder="Enter street/house number"
+              value={streetHouseNo}
+              onChange={(e) => setStreetHouseNo(e.target.value)}
+              className="inp-feilds"
+            />
+          </div>
 
-        <div>
-          {" "}
-          <input
-            type="text"
-            placeholder="Enter city"
-            value={city}
-            className="inp-feilds"
-            onChange={(e) => setCity(e.target.value)}
-          />
-        </div>
+          <div>
+            {" "}
+            <input
+              type="text"
+              placeholder="Enter city"
+              value={city}
+              className="inp-feilds"
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
 
-        <div>
-          {" "}
-          <input
-            type="text"
-            placeholder="Enter ZIP code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-            className="inp-feilds"
-          />
-        </div>
+          <div>
+            {" "}
+            <input
+              type="text"
+              placeholder="Enter ZIP code"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+              className="inp-feilds"
+            />
+          </div>
 
-        <div>
-          <button onClick={handleSaveNext} className="save-btn">
-            Save&Next
-          </button>
+          <div>
+            <button onClick={handleSaveNext} className="save-btn">
+              Save&Next
+            </button>
+          </div>
         </div>
-      </div>
       )}
       <Footer />
     </>

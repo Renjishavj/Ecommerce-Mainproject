@@ -40,7 +40,7 @@ const getTotalAmount = () => {
              <input type='text' value={getTotalAmount()} readOnly  className='totalamt-inp'/> 
           </div>
         <div className='each-cartbtn'>
-        <Link to="/orderpage/addaddress"  state={{ cart: cart}}>
+        <Link to="/orderpage/addaddress"  state={{ product: cart}}>
         
           <button className='cart-cartbutton'>Place Order</button>
           </Link>
