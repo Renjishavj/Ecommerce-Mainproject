@@ -73,7 +73,7 @@ const UpdateProduct = () => {
 
   return (
     <div>
-      <h1 className='add-prohead'>UpdateProduct</h1>
+      <h2 className='add-prohead'>UpdateProduct</h2>
       <div className='add-pro'>
 
       <div>

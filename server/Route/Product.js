@@ -4,43 +4,47 @@ const Keyboard = require("../Schema/keyboardSchema");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = require("../Schema/userSchema");
+const Category = require("../Schema/CategorySchema");
 
 //fetch
 router.get("/moreproducts", async (req, res) => {
+  await requestQueue.wait();
   try {
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
-    console.log("db connected");
-
+    console.log("db connected for cat");
     const product = await Keyboard.find();
-    console.log(product);
     res.status(200).json({ ...product });
-    mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
+  } finally {
+    await mongoose.disconnect();
+    requestQueue.shift();
   }
 });
 
 //fetchsingle
-router.get('/:_id',async (req,res)=>{
+router.get("/:_id", async (req, res) => {
+  await requestQueue.wait();
   try {
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
-
-    const {_id} = req.params;
-    const product = await Keyboard.findById({_id})
-    res.status(200).json({ message:"product", product});
+    const { _id } = req.params;
+    const product = await Keyboard.findById({ _id });
+    res.status(200).json({ message: "product", product });
     console.log(product);
-    mongoose.disconnect();
-
+    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "failed to load product" });
+  } finally {
+    requestQueue.shift();
   }
-} )
+});
 
 //add product
 router.post("/:_id", async (req, res) => {
+  await requestQueue.wait();
   try {
     await mongoose.connect(`${process.env.CONNECTION}/categories`);
     console.log("db connected");
@@ -80,17 +84,20 @@ router.post("/:_id", async (req, res) => {
     await keyboard.save();
     res.status(200).json({ message: "product added" });
     console.log(keyboard);
-    mongoose.disconnect();
+    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
   }
+  finally {
+    await mongoose.disconnect();
+    requestQueue.shift();
+  }
 });
-
-
 
 // Update product
 router.put("/:_id", async (req, res) => {
+  await requestQueue.wait();
   const { _id } = req.params;
 
   try {
@@ -115,7 +122,6 @@ router.put("/:_id", async (req, res) => {
       1: "keyboard",
     };
 
-    
     const updateFields = {};
     if (title) updateFields.title = title;
     if (rating) updateFields.rating = rating;
@@ -126,13 +132,12 @@ router.put("/:_id", async (req, res) => {
     if (cartthree) updateFields.cartthree = cartthree;
     if (description) updateFields.description = description;
     if (count) updateFields.count = count;
-    if (category !== undefined) updateFields.category = categoryMapping[category];
+    if (category !== undefined)
+      updateFields.category = categoryMapping[category];
 
-    const updatedProduct = await Keyboard.findByIdAndUpdate(
-      _id,
-      updateFields,
-      { new: true }
-    );
+    const updatedProduct = await Keyboard.findByIdAndUpdate(_id, updateFields, {
+      new: true,
+    });
 
     if (updatedProduct) {
       res.status(200).json({ message: "product updated", updatedProduct });
@@ -140,16 +145,20 @@ router.put("/:_id", async (req, res) => {
       res.status(404).json({ error: "product not found" });
     }
 
-    mongoose.disconnect();
+    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to update product" });
   }
+  finally {
+    await mongoose.disconnect();
+    requestQueue.shift();
+  }
 });
-
 
 //delete product
 router.delete("/:_id", async (req, res) => {
+  await requestQueue.wait();
   const { _id } = req.params;
   const { category } = req.query;
   try {
@@ -165,17 +174,44 @@ router.delete("/:_id", async (req, res) => {
     });
     if (deleteProduct) {
       res.status(200).json({ message: "product deleted" });
-      console.log("product deleted")
+      console.log("product deleted");
     } else {
       res.status(400).json({ error: "product not found" });
-      console.log("cant delete")
+      console.log("cant delete");
     }
 
-    mongoose.disconnect();
+    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to delete product" });
   }
+  finally {
+    await mongoose.disconnect();
+    requestQueue.shift();
+  }
 });
+
+//add category
+// router.post("/addcategory", async (req, res) => {
+//   try {
+//     await mongoose.connect(`${process.env.CONNECTION}/categories`);
+//     console.log("db connected");
+
+//     const { category, image } = req.body;
+
+//     const newCategory = new Category({
+//       category: category,
+//       image: image,
+//     });
+
+//     await newCategory.save();
+//     res.status(200).json({ message: "Category added" });
+//     console.log(newCategory);
+//     mongoose.disconnect();
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ error: "Failed to add category" });
+//   }
+// });
 
 module.exports = router;

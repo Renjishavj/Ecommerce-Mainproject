@@ -10,6 +10,9 @@ import UpdateProduct from './UpdateProduct'
 import Footer from "../HomePage/Footer"
 import "./Admin.css"
 import Products from './Products'
+import Users from './Users'
+import Categories from "./Categories"
+import AddCategory from './AddCategory'
 function AdminPage() {
   return (
     <>
@@ -23,9 +26,14 @@ function AdminPage() {
         <Route path="/deleteproduct" element={<DeleteProduct/>}/>
         <Route path="/updateproduct" element={<UpdateProduct/>}/>
         <Route path="/products/*" element={<Products/>}/>
+        <Route path="/userpage" element={<Users/>}/>
+        <Route path='/addcatogories' element={<Categories/>}/>
+        <Route path='/addcategories' element={<AddCategory/>}/>
         </Routes>
       </div>
+      
     </div>
+    
     <Footer/>
     </>
   )

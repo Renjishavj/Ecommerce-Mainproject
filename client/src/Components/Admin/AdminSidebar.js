@@ -7,8 +7,6 @@ import {
   FaUsers,
   FaStore,
   FaExchangeAlt,
-  FaMinus,
-  
 } from "react-icons/fa";
 import "./Admin.css";
 import { Link } from "react-router-dom";
@@ -16,7 +14,7 @@ import { Link } from "react-router-dom";
 function AdminSidebar() {
   return (
     <div className="main-sidebar">
-      <div>
+      <div className="hov-spann">
         <FaTachometerAlt className="dashboarsicons" />
         <Link to="dashboard">
           <span className="icon-text">
@@ -24,7 +22,7 @@ function AdminSidebar() {
           </span>
         </Link>
       </div>
-      <div>
+      <div  className="hov-spann">
         <FaBox className="dashboarsicons" />
         <Link to="products">
         <span className="icon-text">
@@ -32,7 +30,7 @@ function AdminSidebar() {
         </span>
         </Link>
       </div>
-      <div>
+      <div  className="hov-spann">
         <FaPlus className="dashboarsicons" />
         <Link to="addproduct">
           <span className="icon-text">
@@ -40,41 +38,39 @@ function AdminSidebar() {
           </span>
         </Link>
       </div>
-      <div>
-        <FaMinus className="dashboarsicons" />
-        <Link to="deleteproduct">
-          <span className="icon-text">
-            <button className="side-btns">Delete Products</button>
-          </span>
-        </Link>
-      </div>
-      <div>
-        <FaMinus  className="dashboarsicons" />
-        <Link to="updateproduct">
-          <span className="icon-text">
-            <button className="side-btns">Update Products</button>
-          </span>
-        </Link>
-      </div>
-      <div>
+      
+     
+      <div  className="hov-spann">
         <FaTags className="dashboarsicons" />
+        <Link to="addcatogories">
         <span className="icon-text">
           <button className="side-btns">Categories</button>
         </span>
+        </Link>
       </div>
-      <div>
+      <div  className="hov-spann">
+        <FaPlus className="dashboarsicons" />
+       <Link to="addcategories">
+          <span className="icon-text">
+            <button className="side-btns"> Categories</button>
+          </span>
+        </Link>
+      </div>
+      <div  className="hov-spann">
         <FaUsers className="dashboarsicons" />
+        <Link to="userpage">
         <span className="icon-text">
           <button className="side-btns">Users</button>
         </span>
+        </Link>
       </div>
-      <div>
+      <div  className="hov-spann">
         <FaStore className="dashboarsicons" />
         <span className="icon-text">
-          <button className="side-btns">Sellers</button>
+          <button className="side-btns">Orders</button>
         </span>
       </div>
-      <div>
+      <div  className="hov-spann">
         <FaExchangeAlt className="dashboarsicons" />
         <span className="icon-text">
           <button className="side-btns">Transactions</button>

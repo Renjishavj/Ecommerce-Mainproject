@@ -45,7 +45,7 @@ function DeleteProduct() {
   return (
     <div className='admin-delte'>
     <div >
-      <h1 className='dlte-head'>DELETE PRODUCT</h1>
+      <h2 className='dlte-head'>DELETE PRODUCT</h2>
       <div className='delete-inpt'>
       <label htmlFor="title">SelectCategory</label>
        <select value={productData.category} onChange={handleCategoryChange} className='inpvaluescat'>

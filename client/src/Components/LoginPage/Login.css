@@ -112,6 +112,12 @@
     font-weight: bold;
     gap: 15px;
     color: white;
+
+}
+
+.google-div img{
+  border-radius:100vh;
+
 }
 .facebook-div{
     display: flex;
@@ -124,6 +130,10 @@
     border-radius: 20px;
     font-weight: bold;
     color: white;
+}
+.facebook-div img{
+  border-radius:100vh;
+  aspect-ratio: 1;
 }
 .twitter-div{
     display: flex;

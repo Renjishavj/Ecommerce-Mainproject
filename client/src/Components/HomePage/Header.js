@@ -15,6 +15,7 @@ import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import { useLogin } from "../../Context/LoginContext";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Header = () => {
   const {
@@ -29,8 +30,8 @@ const Header = () => {
     setUser,
     setLoggedIn
   } = useLogin();
-
-
+ //console.log(user)
+ const [cartItems, setCartItems] = useState([]);
 
 
   const LogOut=()=>{
@@ -40,16 +41,43 @@ const Header = () => {
     localStorage.removeItem('token')
     window.location.href = "/";
   }
+  
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(`http://localhost:3300/route/${user.email}/cart`);
+        if (!response.ok) {
+          throw new Error('Error fetching cart');
+        }
+        const cartData = await response.json();
+        setCartItems(cartData);
+        console.log("cart",cartData)
 
+       
+      } catch (error) {
+        console.error('Error fetching cart:', error.message);
+      }
+    };
 
+    if (loggedIn && user) {
+      fetchCart();
+    }
+  }, [loggedIn, user]);
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
 
   return (
     <div className="header">
       <div className="header-content">
+        <Link to="/">
         <div className="logo">
+
           <img src={logoimg} alt="" className="img" />
         </div>
+        </Link>
         <div className="search">
           <div className="search-container">
             <FaSearch className="search-icon" />
@@ -114,10 +142,43 @@ const Header = () => {
           )}
 
         {loggedIn && (
-        <div>
-          <div>{user.name}</div>
+        <div className="user-icon">
+         
+            <div className="user-name">
+            {user.name}
+            </div>
+           
+           
         </div>
         )}
+
+
+
+{loggedIn && (
+  <div className="user-icon" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+    <div className="icon-div">
+      <div>
+        <FaUser className="user-icon" />
+      </div>
+      <div>
+        <FaAngleDown className="arrow-icon" />
+      </div>
+    </div>
+
+    {isDropdownVisible && (
+      <div className="drop-user">
+        <div className="dropuser-item">
+          <button className="userdrop-btn">User Profile</button>
+        </div>
+        <Link to="/userorder">
+        <div className="dropuser-item">
+          <button className="userorder-btn">Orders</button>
+        </div>
+        </Link>
+      </div>
+    )}
+  </div>
+)}
 
 
           {isLoginVisible && (
@@ -147,7 +208,7 @@ const Header = () => {
             </div>
             )}
             <div>
-              <input type="text" placeholder="8" className="cart-qty" />
+              <h4 className="cart-qty" >{totalQuantity.toString()}</h4>  
             </div>
           </div>
           {loggedIn &&

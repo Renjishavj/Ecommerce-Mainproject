@@ -21,6 +21,7 @@ export const LoginContextProvider = ({ children }) => {
    
   };
  
+ 
 
   const toggleVisibleRegister = () => {
     // Set isLoginVisible to false if isRegisterVisible is true
@@ -41,7 +42,8 @@ export const LoginContextProvider = ({ children }) => {
     user: user,
     setUser: setUser,
     email: email,
-    setEmail:setEmail
+    setEmail:setEmail,
+   
   };
   return <LoginContext.Provider value={data}>{children}</LoginContext.Provider>;
 };

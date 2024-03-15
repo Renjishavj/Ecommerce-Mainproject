@@ -12,6 +12,8 @@ import AdminPage from "../Admin";
 import { useLogin } from "../../Context/LoginContext";
 import AddAddress from "../OrderNow/AddAddress";
 import OrderPage from "../OrderNow";
+import MyOrders from "../OrderNow/MyOrders";
+import UserOrder from "../OrderNow/UserOrder";
 
 function Routers() {
   const { setLoggedIn, setUser } = useLogin();
@@ -35,9 +37,10 @@ function Routers() {
         <Route path="/cartpage/:email" element={<CartPage />} />
         <Route path="/buynow" element={<BuynowPage />} />
         <Route path="/adminpage/*" element={<AdminPage />} />
-        <Route path="/orderpage/*" element={<OrderPage/>} />/
-        <Route path="/addaddress" element={<AddAddress/>} />/
-        
+        <Route path="/orderpage/*" element={<OrderPage/>} />
+        <Route path="/addaddress" element={<AddAddress/>} />
+        <Route path="/myorders" element={<MyOrders/>} />
+        <Route path="/userorder" element={<UserOrder/>}></Route>
       </Routes>
     </BrowserRouter>
   );

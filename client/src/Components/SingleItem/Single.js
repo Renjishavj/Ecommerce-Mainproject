@@ -9,7 +9,9 @@ import "./Single.css";
 import { useLogin } from "../../Context/LoginContext";
 import { useNavigate} from "react-router-dom";
 
+
 function Single() {
+ 
   let { _id } = useParams();
   const [product, setProduct] = useState({});
   const { loggedIn, user, setUser } = useLogin();
@@ -18,6 +20,9 @@ function Single() {
   const [quantity, setQuantity] = useState(1);
   const [isInCart, setIsInCart] = useState(false);
   const navigate = useNavigate();
+
+   
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,6 +33,7 @@ function Single() {
         setProduct(response.data.product);
         //console.log(response.data);
         setOutOfStock(response.data.product.count > 0);
+        document.querySelector(".price-qty").max = response.data.product.count;
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -52,6 +58,7 @@ function Single() {
         parseInt(document.querySelector(".price-qty").value) ;
         if (isNaN(quantity) || quantity <= 0) {
           alert("Please enter a valid non-negative quantity for the product.");
+          
           return;
         }
         if (quantity > product.count) {
@@ -59,7 +66,7 @@ function Single() {
           alert(`Quantity exceeds available stock,avaliable stock is ${product.count}`);
           return;
         }
-    
+        setQuantity(quantity)
       try {
         console.log(
           user.email,
@@ -101,10 +108,37 @@ function Single() {
     }
   };
   
-  const handleGoToBuy=async()=>{
-    navigate("/orderpage/addaddress", { state: { product: [product]}});
-  }
- 
+  const handleGoToBuy = async () => {
+    const enteredQuantity = parseInt(document.querySelector(".price-qty").value);
+  
+    if (isNaN(enteredQuantity) || enteredQuantity <= 0) {
+      alert("Please enter a valid non-negative quantity for the product.");
+      return;
+    }
+    if (!outOfStock) {
+      alert("This product is currently out of stock. Please choose another product.");
+      return;
+    }
+  
+    navigate("/orderpage/addaddress", {
+      state: {
+        product: [
+          {
+            _id: product._id,
+            title: product.title,
+            description: product.description,
+            image: product.image,
+            price: product.price,
+            quantity: enteredQuantity,
+          },
+        ],
+      },
+    });
+  };
+  
+  
+    
+  
 
   const goToCart = () => {
     console.log("Redirecting to Cart");
@@ -157,7 +191,9 @@ function Single() {
           </div>
           <div className="divi-cart">
             <div>
-              <input type="number" className="price-qty" placeholder="0" />
+              <input type="number" className="price-qty" placeholder="0"
+              min="0" 
+               />
             </div>
 
             <div>
@@ -175,9 +211,9 @@ function Single() {
             </div>
 
             <div>
-              
+            
                 <button className="buynow-btn" onClick={handleGoToBuy}> Buy Now</button>
-              
+             
             </div>
 
             <div>

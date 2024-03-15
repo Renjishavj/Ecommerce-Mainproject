@@ -30,22 +30,16 @@ function CartSingle({product,removeFromCart}) {
         <div>
           <h2 className="inp-cart">{product.title}</h2>
         </div>
-        <div>
-          <select name="size" id="sizeSelect" placeholder="size">
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-            <option value="x-Large">X-Large</option>
-          </select>
-        </div>
-        <div>
-          <h2 className="inp-cart">{product.price}</h2>
+        
+        <div className="price-cart">
+        <p className="inp-cart">${(product.price * product.quantity).toFixed(2)}</p>
+
         </div>
         <div>
         <input
             type="number"
             placeholder={product.quantity}
-            value={quantity}
+            value={product.quantity}
             onChange={handleQuantityChange}
             className="quandity-single"
           />

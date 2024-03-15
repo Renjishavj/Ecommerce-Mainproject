@@ -102,7 +102,7 @@ const AddProduct = () => {
 
   return (
     <div className="addProduct">
-      <h1 className="add-prohead">ADD PRODUCT</h1>
+      <h2 className="add-prohead">ADD PRODUCT</h2>
       <div className="add-pro">
       <div  className="inputscartscategory">
           <div><label htmlFor="title">Category</label></div>
@@ -116,7 +116,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="id">ID:</label>
+            <label htmlFor="id">ID</label>
           </div>
           <div>
             <input
@@ -133,7 +133,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="title">Title:</label>
+            <label htmlFor="title">Title</label>
           </div>
           <div>
             <input
@@ -150,7 +150,7 @@ const AddProduct = () => {
 
         <div className="inputscartsrate">
           <div>
-            <label htmlFor="rating">Rating:</label>
+            <label htmlFor="rating">Rating</label>
           </div>
           <div>
             {" "}
@@ -171,7 +171,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price">Price</label>
           </div>
           <div>
             <input
@@ -190,7 +190,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="image">Image:</label>
+            <label htmlFor="image">Image</label>
           </div>
           <div>
             <input
@@ -207,7 +207,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="addImage1">Additional Image 1:</label>
+            <label htmlFor="addImage1">Additional Image</label>
           </div>
           <div>
             <input
@@ -222,7 +222,7 @@ const AddProduct = () => {
         </div>
         <div className="inputscarts">
           <div>
-            <label htmlFor="addImage2">Additional Image 2:</label>
+            <label htmlFor="addImage2">Additional Image</label>
           </div>
           <div>
             <input
@@ -238,7 +238,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="addImage3">Additional Image 3:</label>
+            <label htmlFor="addImage3">Additional Image</label>
           </div>
           <div>
             <input
@@ -254,7 +254,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description">Description</label>
           </div>
           <div>
             <textarea
@@ -270,7 +270,7 @@ const AddProduct = () => {
 
         <div className="inputscarts">
           <div>
-          <label htmlFor="count">Stock:</label>
+          <label htmlFor="count">Stock</label>
           </div>
           <div>
           <input

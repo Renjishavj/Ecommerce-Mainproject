@@ -73,11 +73,12 @@
    padding-right: 50px;
     border: 1px solid rgb(3, 17, 35);
     padding-top: 20px;
-    padding-bottom: 150px;
+    padding-bottom: 280px;
     margin-top: 0px;
 }
 .dashboarsicons{
     color:rgb(3, 17, 35) ;
+    padding-left: 10px;
    
 }
 .side-btns{
@@ -86,7 +87,8 @@
     border: none;
     outline: none;
     background-color: white;
-    width: 140px;
+    width: 120px;
+    margin-left: -10px;
 }
 .main-sidebar div {
     display: flex;
@@ -110,7 +112,7 @@
     padding-left: 400px;
   }
   .add-prohead{
-    padding-left: 480px;
+    padding-left: 500px;
     padding-bottom: 20px;
     padding-top: 20px;
   }
@@ -120,11 +122,16 @@
  .addProduct{
    
     padding-right: 400px;
+    padding-bottom: 50px;
+ }
+ .hov-spann:hover{
+   border: 2px solid rgb(3, 17, 35);
+  
  }
  .inputscarts{
     display: flex;
-    gap: 30px;
-    border:  1px solid rgb(3, 17, 35);
+    gap: 10px;
+    border-bottom: 2px solid rgb(3, 17, 35);
  }
  .inputscartscategory{
     display: flex;
@@ -133,13 +140,14 @@
  }
  .input-form{
     border: none;
+   
     padding: 10px;
     outline: none;
  }
  .inputscartsrate{
     display: flex;
     gap: 30px;
-    border:  1px solid rgb(3, 17, 35);
+    border-bottom:  2px solid rgb(3, 17, 35);
    
  }
  .ratescale{
@@ -162,9 +170,15 @@
     padding: 5px;
     border: none;
     outline: none;
-    width: 400px;
+    width: 130px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 10px;
+ }
+ .addprod:hover{
+   color:  rgb(3, 17, 35);
+   background-color: white;
+   border: 2px solid rgb(3, 17, 35);
  }
 
  /*delete*/
@@ -176,7 +190,7 @@
     gap: 20px;
  }
  .delete-inp{
-    border: 1px solid rgb(3, 17, 35);
+    border-bottom: 1px solid rgb(3, 17, 35);
  }
  .inpvalues{
     border: none;
@@ -192,12 +206,13 @@
     padding: 5px;
     border: none;
     outline: none;
-    width: 400px;
+    margin-left: 60px;
+    width: 130px;
     padding-top: 10px;
     padding-bottom: 10px;
  }
  .dlte-head{
-    margin-left: 50px;
+    margin-left: 10px;
     padding-bottom: 20px;
  }
  .update-btn{
@@ -206,7 +221,7 @@
     padding: 5px;
     border: none;
     outline: none;
-    width: 400px;
+    width: 130px;
     padding-top: 10px;
     padding-bottom: 10px;
  }
@@ -246,3 +261,43 @@
     outline: none;
    width: 50px;
  }
+
+ /*user view*/
+ 
+.blck-btn{
+   background-color: rgb(3, 17, 35);
+   color: white;
+   outline: none;
+  
+}
+.useradmin-icon{
+   color: rgb(3, 17, 35);
+}
+.users-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 40px;
+   margin-left: 60px;
+ }
+ 
+ .users-table th, .users-table td {
+   border: 1px solid #ddd;
+   padding: 8px;
+  
+   text-align: left;
+   text-align: center;
+   width: 200px;
+ }
+ 
+ .users-table th {
+   background-color: #f2f2f2;
+ }
+ 
+ .users-table tbody tr:nth-child(even) {
+   background-color: #f9f9f9;
+ }
+ 
+ .users-table tbody tr:hover {
+   background-color: #e5e5e5;
+ }
+ 
