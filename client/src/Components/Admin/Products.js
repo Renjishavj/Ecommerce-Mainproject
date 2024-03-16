@@ -24,7 +24,7 @@ function Products() {
           catch(err){console.log(err)}
 
         }
-        
+      
 
     fetchData();
   }, []);

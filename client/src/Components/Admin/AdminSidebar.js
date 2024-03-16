@@ -66,9 +66,11 @@ function AdminSidebar() {
       </div>
       <div  className="hov-spann">
         <FaStore className="dashboarsicons" />
+        <Link to="viewall">
         <span className="icon-text">
           <button className="side-btns">Orders</button>
         </span>
+        </Link>
       </div>
       <div  className="hov-spann">
         <FaExchangeAlt className="dashboarsicons" />

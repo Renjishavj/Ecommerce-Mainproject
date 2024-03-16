@@ -14,6 +14,7 @@ import AddAddress from "../OrderNow/AddAddress";
 import OrderPage from "../OrderNow";
 import MyOrders from "../OrderNow/MyOrders";
 import UserOrder from "../OrderNow/UserOrder";
+import OrdersAdmin from "../Admin/OrdersAdmin";
 
 function Routers() {
   const { setLoggedIn, setUser } = useLogin();
@@ -40,7 +41,8 @@ function Routers() {
         <Route path="/orderpage/*" element={<OrderPage/>} />
         <Route path="/addaddress" element={<AddAddress/>} />
         <Route path="/myorders" element={<MyOrders/>} />
-        <Route path="/userorder" element={<UserOrder/>}></Route>
+        <Route path="/userorder" element={<UserOrder/>}/>
+       
       </Routes>
     </BrowserRouter>
   );

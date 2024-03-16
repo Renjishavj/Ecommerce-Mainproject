@@ -138,7 +138,7 @@ function ConfirmOrder() {
 
   return (
     <>
-    <div className="main-flex">
+    
       <div className="address-view">
         <h2 className="address-head">Your Address</h2>
 
@@ -175,11 +175,12 @@ function ConfirmOrder() {
           </div>
         ))}
       </div>
-
-      <div className="conf-div">
+     
+      <div className="confi-div">
         {Array.isArray(Product) &&
           Product.map((product,index) => (
             <>
+            <div className="confirm-sing">
               <div>
                 <img
                   src={product.image}
@@ -198,10 +199,12 @@ function ConfirmOrder() {
                   value={product.quantity}
                 />
               </div>
-              
+              </div>
             </>
           ))}
       </div>
+      
+
 
       <div className="conf-btn">
         <div>
@@ -215,7 +218,7 @@ function ConfirmOrder() {
           </div>
         </div>
       </div>
-      </div>
+      
     </>
   );
 }

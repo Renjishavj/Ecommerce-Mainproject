@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useLogin } from "../../Context/LoginContext";
 
 import Header from "../HomePage/Header";
-import Footer from "../HomePage/Footer"
+import Footer from "../HomePage/Footer";
+
 function UserOrder() {
     const { user } = useLogin();
     const [userData, setUserData] = useState(null);
    
     const email = user.email;
-    console.log(email)
+    console.log(email);
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -18,7 +20,7 @@ function UserOrder() {
                 }
                 const userData = await response.json();
                 setUserData(userData.user);
-                console.log(userData)
+                console.log(userData);
             } catch (error) {
                 console.error('Error fetching user data:', error.message);
             }
@@ -39,28 +41,32 @@ function UserOrder() {
     return (
         <>
             <Header />
-            <div className='order-list'>
-                {/* <h2 className='head-orders'>Your Orders</h2> */}
+            
+            <div className='order-list-one'>
                 {userData && userData.orders ? (
                     <div className="order-container">
-                        {userData.orders.map((order, index) => (
-                            <div key={index} className="order-item">
+                        {userData.orders.map((order, orderIndex) => (
+                            <div key={orderIndex} className="order-item">
+                                {order.orderList.map((product, productIndex) => (
+                                    <div key={productIndex} className='order-list'>
+                                        <div>
+                                            <img src={product.image} alt="" className="cartorder" />
+                                        </div>
+                                        <div>
+                                            <h2 className="inp-cart">{product.title}</h2>
+                                            <p className='delivery-date'>Delivered By: {calculateDeliveryDate()}</p>
+                                            <p className="inp-cart">${product.price * product.quantity}</p>
+                                            <input
+                                                type="number"
+                                                placeholder="qty"
+                                                value={product.quantity}
+                                                className="quandity-single"
+                                            />
+                                            <h3>Status</h3>
+                                        </div>
+                                    </div>
+                                ))}
                                
-                                <div>
-                                    <img src={order.orderList[0].image} alt="" className="cartorder" />
-                                </div>
-                                <div>
-                                    <h2 className="inp-cart">{order.orderList[0].title}</h2>
-                                    <p className="inp-cart">${order.orderList[0].price * order.orderList[0].quantity}</p>
-                                    <input
-                                        type="number"
-                                        placeholder="qty"
-                                        value={order.orderList[0].quantity}
-                                        className="quandity-single"
-                                    />
-                                    <h3>Status</h3>
-                                </div>
-                                <p className='delivery-date'>Delivered By:{calculateDeliveryDate()}</p>
                             </div>
                         ))}
                     </div>
@@ -68,7 +74,7 @@ function UserOrder() {
                     <p>Loading user data...</p>
                 )}
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 }

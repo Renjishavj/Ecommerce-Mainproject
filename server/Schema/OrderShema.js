@@ -1,21 +1,26 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
 
-const orderSchema=mongoose.Schema({
-    orders: [
-        {
-          orderList: [
-            {
-              _id: String,
-              title: String,
-              description: String,
-              image: String,
-              price: String,
-              quantity: Number,
-            },
-          ],
-         
-        },
-      ],
-})
+const orderSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  order: {
+    type: Object,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-module.exports=mongoose.model("order",orderSchema)
+module.exports = orderSchema;

@@ -13,6 +13,7 @@ import Products from './Products'
 import Users from './Users'
 import Categories from "./Categories"
 import AddCategory from './AddCategory'
+import OrdersAdmin from './OrdersAdmin'
 function AdminPage() {
   return (
     <>
@@ -29,6 +30,7 @@ function AdminPage() {
         <Route path="/userpage" element={<Users/>}/>
         <Route path='/addcatogories' element={<Categories/>}/>
         <Route path='/addcategories' element={<AddCategory/>}/>
+        <Route path="/viewall" element={<OrdersAdmin/>}/>
         </Routes>
       </div>
       

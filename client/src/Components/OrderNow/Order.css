@@ -76,6 +76,7 @@
     display: flex;
     gap: 0px;
     margin-top: -15px;
+   
 }
 .hidden-price{
     visibility: hidden;
@@ -90,12 +91,25 @@
    flex-direction: column;
    
 }
-.conf-div{
+.conf-div
+{
     display: flex;
     gap: 0px;
    
    margin-top: 10px;
   
+}
+.confi-div{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 280px;
+    margin-right: 300px;
+    margin-top: 10px;
+}
+.confirm-sing{
+    display: flex;
 }
 
   
@@ -177,30 +191,34 @@
 }
 
 /*userorder*/
-.order-list{
-   
-   margin-left: 150px;
-   margin-top: 50px;
-  padding-bottom: 100px;
-   margin-right: 150px;
-}
-.tit-date{
-    display: flex;
-    gap: 30px;
-}
+
+
 .cartorder{
     margin-top: 25px;
     width: 200px;
-    margin-left: 30px;
+   
 }
-.delivery-date{
-    margin-top: 25px;
-}
+
 .order-item{
-    display: flex;
-    gap: 50px;
-    border: 1px solid black;
+   display: flex;
+   flex-direction: column;
+ 
+   
 }
 .head-orders{
     text-align: center;
+}
+.order-list{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    border: 1px solid black;
+   margin-left: 350px;
+  
+}
+.order-list-one{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+   margin-bottom: 100px;
 }

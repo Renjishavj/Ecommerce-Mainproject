@@ -1,52 +1,54 @@
 const express = require("express");
 const app = express();
-const Keyboard = require("../Schema/keyboardSchema");
 const router = express.Router();
+const dbManager = require("../connectionManager");
 const mongoose = require("mongoose");
-const User = require("../Schema/userSchema");
-const Category = require("../Schema/CategorySchema");
 
 //fetch
 router.get("/moreproducts", async (req, res) => {
-  await requestQueue.wait();
+  
+ 
+  
   try {
-    await mongoose.connect(`${process.env.CONNECTION}/categories`);
-    console.log("db connected for cat");
-    const product = await Keyboard.find();
-    res.status(200).json({ ...product });
+    const {
+      models: { keyboards },
+    } = dbManager.getConnection("categories");
+    const product = await keyboards.find();
+    res.status(201).json({ ...product });
+   
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
-  } finally {
-    await mongoose.disconnect();
-    requestQueue.shift();
   }
 });
 
 //fetchsingle
 router.get("/:_id", async (req, res) => {
-  await requestQueue.wait();
+ 
+ 
   try {
-    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    parseInt;
+    const {
+      models: { keyboards: Keyboard },
+    } = dbManager.getConnection("categories");
     console.log("db connected");
     const { _id } = req.params;
-    const product = await Keyboard.findById({ _id });
+    const id = Number.parseInt(_id);
+    const product = await Keyboard.findOne({ _id: id });
     res.status(200).json({ message: "product", product });
-    console.log(product);
-    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "failed to load product" });
-  } finally {
-    requestQueue.shift();
-  }
+  } 
 });
 
 //add product
 router.post("/:_id", async (req, res) => {
-  await requestQueue.wait();
+ 
   try {
-    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    const {
+      models: { keyboards: Keyboard },
+    } = dbManager.getConnection("categories");
     console.log("db connected");
 
     const {
@@ -69,7 +71,7 @@ router.post("/:_id", async (req, res) => {
     };
 
     const keyboard = new Keyboard({
-      _id: _id,
+      _id: parseInt(_id),
       title: title,
       rating: rating,
       price: price,
@@ -88,20 +90,18 @@ router.post("/:_id", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to" });
-  }
-  finally {
-    await mongoose.disconnect();
-    requestQueue.shift();
-  }
+  } 
 });
 
 // Update product
 router.put("/:_id", async (req, res) => {
-  await requestQueue.wait();
+
   const { _id } = req.params;
 
   try {
-    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    const {
+      models: { keyboards: Keyboard },
+    } = dbManager.getConnection("categories");
     console.log("db connected");
 
     const {
@@ -144,25 +144,21 @@ router.put("/:_id", async (req, res) => {
     } else {
       res.status(404).json({ error: "product not found" });
     }
-
-    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to update product" });
-  }
-  finally {
-    await mongoose.disconnect();
-    requestQueue.shift();
-  }
+  } 
 });
 
 //delete product
 router.delete("/:_id", async (req, res) => {
-  await requestQueue.wait();
+ 
   const { _id } = req.params;
   const { category } = req.query;
   try {
-    await mongoose.connect(`${process.env.CONNECTION}/categories`);
+    const {
+      models: { keyboards: Keyboard },
+    } = dbManager.getConnection("categories");
     console.log("db connected");
     const categoryMapping = {
       0: "guitar",
@@ -179,16 +175,10 @@ router.delete("/:_id", async (req, res) => {
       res.status(400).json({ error: "product not found" });
       console.log("cant delete");
     }
-
-    await mongoose.disconnect();
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "failed to delete product" });
-  }
-  finally {
-    await mongoose.disconnect();
-    requestQueue.shift();
-  }
+  } 
 });
 
 //add category

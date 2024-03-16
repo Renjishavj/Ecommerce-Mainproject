@@ -2,13 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
-const { error } = require("console");
-const User = require("../Schema/userSchema");
-const mongoose = require("mongoose");
-const { Types } = require("mongoose");
+const dbManager = require('../connectionManager')
+
 //order route
 
 router.post("/orders", async (req, res) => {
+  
   try {
     const { amount } = req.body;
     const instance = new Razorpay({
@@ -17,7 +16,7 @@ router.post("/orders", async (req, res) => {
     });
 
     const options = {
-      amount: amount * 100, 
+      amount: amount * 100,
       currency: "INR",
     };
     const order = await instance.orders.create(options);
@@ -29,141 +28,87 @@ router.post("/orders", async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: "Internal server error order", error });
-  }
+  } 
 });
 
 //verify payment
 router.post("/verify", async (req, res) => {
-    try {
-      await mongoose.connect(`${process.env.CONNECTION}`);
-      console.log("db connected");
   
-      
-      const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-      const { amount, email, userOrder } = req.body;
-  
-      const body = `${razorpay_order_id}|${razorpay_payment_id}`;
-      
-     
-      const expectedSignature = crypto
-        .createHmac("sha256", process.env.RAZORPAY_API_SECRET)
-        .update(body.toString())
-        .digest("hex");
-  
-     
-      const isSignatureValid = expectedSignature === razorpay_signature;
-  
-      
-      if (isSignatureValid) {
-        const user = await User.findOne({ email: email });
-        if (!user) {
-          res.status(400).json({ message: "no user" });
-        } else {
-         
-          const newOrder = {
-            orderList: userOrder,
-            payment: {
-              razorpay_order_id,
-              razorpay_payment_id,
-              razorpay_signature,
-              amount,
-            },
-          };
-  
-        user.orders.push(newOrder);
-  
-         
-          await user.save();
-  
-          res.status(200).json({
-            success: true,
-            message: "Payment verified and order placed successfully",
-          });
-        }
+  try {
+    let {models : {users, orders}} = dbManager.getConnection('main')
+    console.log("db connected");
+
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+      req.body;
+    const { amount, email, userOrder } = req.body;
+    console.log(userOrder)
+
+    const body = `${razorpay_order_id}|${razorpay_payment_id}`;
+
+    const expectedSignature = crypto
+      .createHmac("sha256", process.env.RAZORPAY_API_SECRET)
+      .update(body.toString())
+      .digest("hex");
+
+    const isSignatureValid = expectedSignature === razorpay_signature;
+
+    if (isSignatureValid) {
+      const user = await users.findOne({ email: email });
+      if (!user) {
+        res.status(400).json({ message: "no user" });
       } else {
-        res.status(400).json({
-          success: false,
-          message: "Error in verification of payment",
+        const newOrder = {
+          orderList: userOrder,
+          payment: {
+            razorpay_order_id,
+            razorpay_payment_id,
+            razorpay_signature,
+            amount,
+          },
+        };
+
+        user.orders.push(newOrder);
+        await user.save();
+        res.status(200).json({
+          success: true,
+          message: "Payment verified and order placed successfully",
         });
+        
+
+        const order = new orders({
+          name:user.name,
+          address: JSON.stringify(user.addresses),
+          email:email,
+          order: [
+            {
+              orderList: userOrder.map(orderItem => ({
+                _id: orderItem._id,
+                title: orderItem.title,
+                description: orderItem.description,
+                image: orderItem.image,
+                price: orderItem.price,
+                quantity: orderItem.quantity
+              })),
+            }
+          ],
+          createdAt:new Date()
+          
+        })
+        order.save()
       }
-  
-     await mongoose.disconnect();
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({
+    } else {
+      res.status(400).json({
         success: false,
-        message: "Internal server error",
+        message: "Error in verification of payment",
       });
     }
-  });
 
-
-
-  //second
-  //router.post("/verify", async (req, res) => {
-    //   try {
-    //       await mongoose.connect(`${process.env.CONNECTION}`);
-    //       console.log("Database connected");
-    
-    //       const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-    //       const { amount, email, userOrder } = req.body;
-    
-    //       const body = `${razorpay_order_id}|${razorpay_payment_id}`;
-    
-    //       const expectedSignature = crypto
-    //           .createHmac("sha256", process.env.RAZORPAY_API_SECRET)
-    //           .update(body.toString())
-    //           .digest("hex");
-    
-    //       const isSignatureValid = expectedSignature === razorpay_signature;
-    
-    //       if (isSignatureValid) {
-    //           const user = await User.findOne({ email: email });
-    //           if (!user) {
-    //               res.status(400).json({ message: "no user" });
-    //           } else {
-    //               const newOrder = {
-    //                   orderList: userOrder,
-    //                   payment: {
-    //                       razorpay_order_id,
-    //                       razorpay_payment_id,
-    //                       razorpay_signature,
-    //                       amount,
-    //                   },
-    //               };
-    
-    //               // Create a new Order instance and push the new order
-    //               const order = new Order(newOrder);
-    //               user.orders.push(order);
-    
-    //               await user.save();
-    
-    //               res.status(200).json({
-    //                   success: true,
-    //                   message: "Payment verified and order placed successfully",
-    //               });
-    //           }
-    //       } else {
-    //           res.status(400).json({
-    //               success: false,
-    //               message: "Error in verification of payment",
-    //           });
-    //       }
-    
-    //       mongoose.disconnect();
-    //   } catch (error) {
-    //       console.error(error);
-    //       res.status(500).json({
-    //           success: false,
-    //           message: "Internal server error",
-    //       });
-    //   }
-    // });
-
-
-
-
-  
-  
-  
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  } 
+});
 module.exports = router;

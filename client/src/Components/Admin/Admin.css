@@ -300,4 +300,15 @@
  .users-table tbody tr:hover {
    background-color: #e5e5e5;
  }
- 
+
+/* view orders */
+.head-admorder{
+  color: black;
+}
+.table-vieworder,th,td  {
+  border: 1px solid black;
+}
+ .table-vieworder{
+  margin-left: 50px;
+  margin-right: 50px
+ }
